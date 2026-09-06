@@ -1,0 +1,402 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+LUNOIR | Your Cart
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+
+<!-- =====================================================
+     CART PAGE
+===================================================== -->
+
+<section class="cart-page">
+
+    <!-- Decorative background -->
+    <div class="cart-glow cart-glow-one"></div>
+    <div class="cart-glow cart-glow-two"></div>
+
+    <div class="cart-container">
+
+        <!-- BREADCRUMB -->
+
+        <div class="cart-breadcrumb">
+            <a href="/">Home</a>
+            <span>›</span>
+            <span>Your Cart</span>
+        </div>
+
+
+        <!-- PAGE HEADING -->
+
+        <div class="cart-heading">
+
+            <div class="heading-sparkle">✦</div>
+
+            <h1>
+                Your <em>Cart</em>
+            </h1>
+
+            <div class="heading-line">
+                <span></span>
+                <i>✦</i>
+                <span></span>
+            </div>
+
+            <p>
+                Review your items and proceed to secure checkout.
+            </p>
+
+        </div>
+
+
+        <!-- MAIN CART LAYOUT -->
+
+        <div class="cart-layout">
+
+
+            <!-- =================================================
+                 LEFT SIDE
+            ================================================== -->
+
+            <div class="cart-left">
+
+
+                <!-- EMPTY CART CARD -->
+
+                <div class="empty-cart-card">
+
+                    <div class="empty-decoration decoration-left">
+                        ❋
+                    </div>
+
+                    <div class="empty-decoration decoration-right">
+                        ✦
+                    </div>
+
+
+                    <!-- SHOPPING BAG -->
+
+                    <div class="bag-illustration">
+
+                        <div class="bag-circle"></div>
+
+                        <div class="shopping-bag">
+
+                            <div class="bag-handle"></div>
+
+                            <div class="bag-body">
+
+                                <span>LUNOIR</span>
+
+                            </div>
+
+                            <div class="bag-heart">
+                                ♡
+                            </div>
+
+                        </div>
+
+                        <div class="bag-leaf leaf-left">
+                            ❧
+                        </div>
+
+                        <div class="bag-leaf leaf-right">
+                            ❧
+                        </div>
+
+                    </div>
+
+
+                    <div class="empty-label">
+                        YOUR SHOPPING BAG IS WAITING
+                    </div>
+
+
+                    <h2>
+                        Your cart is
+                        <em>empty.</em>
+                    </h2>
+
+
+                    <div class="empty-divider">
+                        <span></span>
+                        ✦
+                        <span></span>
+                    </div>
+
+
+                    <p class="empty-description">
+                        Looks like you haven't added anything to your cart yet.
+                        <br>
+                        Explore our collections and find something you'll love.
+                    </p>
+
+
+                    <a href="{% url 'products:products' %}" class="continue-shopping">
+
+                        <span>
+                            CONTINUE SHOPPING
+                        </span>
+
+                        <strong>
+                            →
+                        </strong>
+
+                    </a>
+
+                </div>
+
+
+                <!-- BENEFITS -->
+
+                <div class="benefits-card">
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            ♧
+                        </div>
+
+                        <div>
+                            <strong>FREE SHIPPING</strong>
+                            <p>On orders over $75</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="benefit-divider"></div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            ♢
+                        </div>
+
+                        <div>
+                            <strong>SECURE PAYMENT</strong>
+                            <p>100% protected checkout</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="benefit-divider"></div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            ↻
+                        </div>
+
+                        <div>
+                            <strong>EASY RETURNS</strong>
+                            <p>30-day return policy</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="benefit-divider"></div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            ♧
+                        </div>
+
+                        <div>
+                            <strong>SUPPORT 24/7</strong>
+                            <p>We're here to help</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 RIGHT SIDE
+            ================================================== -->
+
+            <aside class="cart-sidebar">
+
+
+                <!-- ORDER SUMMARY -->
+
+                <div class="summary-card">
+
+                    <div class="summary-title">
+
+                        <span>✦</span>
+
+                        <h3>
+                            ORDER SUMMARY
+                        </h3>
+
+                        <span>✦</span>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Subtotal</span>
+
+                        <strong>$0.00</strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <div>
+                            <span>Shipping</span>
+                            <small>Calculated at checkout</small>
+                        </div>
+
+                        <strong>—</strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <div>
+                            <span>Discount</span>
+                            <small>Add a promo code at checkout</small>
+                        </div>
+
+                        <strong>—</strong>
+
+                    </div>
+
+
+                    <!-- TOTAL -->
+
+                    <div class="total-box">
+
+                        <div>
+
+                            <strong>
+                                Estimated Total
+                            </strong>
+
+                            <small>
+                                Taxes included
+                            </small>
+
+                        </div>
+
+                        <span>
+                            $0.00
+                        </span>
+
+                    </div>
+
+
+                    <!-- CHECKOUT -->
+
+                    <button class="checkout-button" disabled>
+
+                        <span>♧</span>
+
+                        PROCEED TO CHECKOUT
+
+                    </button>
+
+
+                    <!-- PAYMENT -->
+
+                    <div class="payment-divider">
+
+                        <span></span>
+
+                        <p>WE ACCEPT</p>
+
+                        <span></span>
+
+                    </div>
+
+
+                    <div class="payment-methods">
+
+                        <span class="visa">VISA</span>
+
+                        <span class="mastercard">
+                            ●●
+                        </span>
+
+                        <span class="card-icon">
+                            ▣
+                        </span>
+
+                        <span class="paypal">
+                            PayPal
+                        </span>
+
+                        <span class="applepay">
+                            Pay
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FREE SHIPPING -->
+
+                <div class="shipping-card">
+
+                    <div class="shipping-icon">
+                        ♧
+                    </div>
+
+                    <div class="shipping-content">
+
+                        <p>
+                            Add $75.00 more to get
+                        </p>
+
+                        <strong>
+                            FREE SHIPPING!
+                        </strong>
+
+
+                        <div class="progress-bar">
+
+                            <div class="progress"></div>
+
+                        </div>
+
+
+                        <div class="progress-labels">
+
+                            <span>$0.00</span>
+
+                            <span>$75.00</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

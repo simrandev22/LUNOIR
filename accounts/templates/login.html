@@ -1,0 +1,286 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+LUNOIR | Login
+{% endblock %}
+
+{% block body_class %}
+auth-body
+{% endblock %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+{% block content %}
+
+<div class="auth-page">
+
+    <div class="auth-card">
+
+        <!-- LEFT IMAGE -->
+
+        <div class="auth-image login-image">
+
+            <div class="auth-image-overlay"></div>
+
+            <div class="auth-image-content">
+
+                <span class="auth-eyebrow">
+                    LUNOIR COLLECTION
+                </span>
+
+                <h2>
+                    Luxury fashion,
+                    <br>
+                    made smarter.
+                </h2>
+
+                <p>
+                    Discover your style through a more
+                    intelligent fashion experience.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN FORM -->
+
+        <div class="auth-form-section">
+
+            <div class="auth-form-wrapper">
+
+                <!-- BRAND -->
+
+                <div class="auth-brand">
+
+                    <div class="auth-star">
+                        ✦
+                    </div>
+
+                    <h1>
+                        LUNOIR
+                    </h1>
+
+                    <p>
+                        AI FASHION
+                    </p>
+
+                </div>
+
+
+                <!-- HEADING -->
+
+                <div class="auth-heading">
+
+                    <h2>
+                        Welcome Back
+                    </h2>
+
+                    <p>
+                        Log in to continue your journey.
+                    </p>
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <form method="POST" action="{% url 'login' %}">
+
+                    {% csrf_token %}
+                    <!-- ================= MESSAGE BOX ================= -->
+                    {% if messages %}
+                    <div class="message-container">
+                        {% for message in messages %}
+                        <div class="message-box 
+            {% if message.tags == 'success' %}success
+            {% elif message.tags == 'error' %}error
+            {% elif message.tags == 'warning' %}warning
+            {% else %}info{% endif %}">
+
+                            <span class="message-icon">
+                                {% if message.tags == 'success' %}
+                                ✓
+                                {% elif message.tags == 'error' %}
+                                ×
+                                {% elif message.tags == 'warning' %}
+                                !
+                                {% else %}
+                                i
+                                {% endif %}
+                            </span>
+
+                            <div class="message-content">
+                                {{ message }}
+                            </div>
+
+                            <button class="message-close" onclick="this.parentElement.remove()">
+                                ×
+                            </button>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- EMAIL / PHONE -->
+
+                    <div class="auth-input-group">
+
+                        <label for="login_identifier">
+                            Email Address
+                        </label>
+
+                        <div class="auth-input">
+
+                            <span class="input-icon">
+                                <i class="fa-regular fa-user"></i>
+                            </span>
+
+                            <input type="email" id="login_identifier" name="identifier"
+                                placeholder="Email address or mobile number" required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="auth-input-group">
+
+                        <label for="login_password">
+                            Password
+                        </label>
+
+                        <div class="auth-input">
+
+                            <span class="input-icon">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+
+                            <input type="password" id="login_password" name="password" placeholder="Password" required>
+
+                            <button type="button" class="password-eye" onclick="togglePassword('login_password', this)">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FORGOT -->
+
+                    <div class="auth-forgot">
+
+                        <a href="#">
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <!-- LOGIN -->
+
+                    <button type="submit" class="auth-main-button">
+
+                        <span>
+                            LOG IN
+                        </span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+
+                <!-- DIVIDER -->
+
+                <div class="auth-divider">
+
+                    <span></span>
+
+                    <p>
+                        or continue with
+                    </p>
+
+                    <span></span>
+
+                </div>
+
+
+                <!-- SOCIAL -->
+
+                <div class="auth-social">
+
+                    <button type="button">
+                        <i class="fa-brands fa-google"></i>
+                        <span>Google</span>
+                    </button>
+
+                    <button type="button">
+                        <i class="fa-brands fa-facebook"></i>
+                        <span>Facebook</span>
+                    </button>
+
+                    <button type="button">
+                        <i class="fa-brands fa-apple"></i>
+                        <span>Apple</span>
+                    </button>
+
+                </div>
+
+
+                <!-- SIGNUP -->
+
+                <div class="auth-switch">
+
+                    <span>
+                        Don't have an account?
+                    </span>
+
+                    <a href="{% url 'signup' %}">
+                        Sign up
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function togglePassword(inputId, button) {
+
+        const input = document.getElementById(inputId);
+        const icon = button.querySelector("i");
+
+        if (input.type === "password") {
+
+            input.type = "text";
+
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+
+        } else {
+
+            input.type = "password";
+
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+
+        }
+
+    }
+
+</script>
+
+{% endblock %}

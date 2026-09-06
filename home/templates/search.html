@@ -1,0 +1,216 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+LUNOIR | Search
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="search-page">
+
+    <div class="search-hero">
+
+        <span class="search-eyebrow">
+            ✦ DISCOVER YOUR STYLE
+        </span>
+
+        <h1>
+            SEARCH <em>LUNOIR</em>
+        </h1>
+
+        <p class="search-description">
+            Find exactly what you're looking for.
+            <br>
+            Search our entire collection.
+        </p>
+
+        <form method="GET" action="{% url 'search' %}" class="search-form">
+
+            <div class="search-input-wrapper">
+
+                <span class="search-symbol">⌕</span>
+
+                <input
+                    type="text"
+                    name="q"
+                    value="{{ query|default:'' }}"
+                    placeholder="Search anything..."
+                    autocomplete="off"
+                >
+
+                {% if query %}
+                    <a href="{% url 'search' %}" class="clear-search">
+                        ×
+                    </a>
+                {% endif %}
+
+            </div>
+
+            <button type="submit">
+                SEARCH
+                <span>→</span>
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if query %}
+
+    <section class="search-results">
+
+        <div class="results-heading">
+
+            <div>
+                <span class="results-eyebrow">
+                    SEARCH RESULTS
+                </span>
+
+                <h2>
+                    Results for
+                    <em>"{{ query }}"</em>
+                </h2>
+            </div>
+
+            <span class="result-count">
+                {{ results|length }} results
+            </span>
+
+        </div>
+
+
+        {% if results %}
+
+        <div class="search-product-grid">
+
+            {% for product in results %}
+
+            <article class="search-product-card">
+
+                <div class="search-product-image">
+
+                    {% if product.image %}
+                        <img
+                            src="{{ product.image.url }}"
+                            alt="{{ product.name }}"
+                        >
+                    {% else %}
+                        <div class="product-image-placeholder">
+                            LUNOIR
+                        </div>
+                    {% endif %}
+
+                    <button class="search-wishlist">
+                        ♡
+                    </button>
+
+                </div>
+
+                <div class="search-product-info">
+
+                    <span class="product-category">
+                        {{ product.category }}
+                    </span>
+
+                    <h3>
+                        {{ product.name }}
+                    </h3>
+
+                    <div class="product-bottom">
+
+                        <strong>
+                            ${{ product.price }}
+                        </strong>
+
+                        <span class="product-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="no-results">
+
+            <div class="no-results-icon">
+                ⌕
+            </div>
+
+            <h2>
+                Nothing found
+            </h2>
+
+            <p>
+                We couldn't find anything matching
+                <strong>"{{ query }}"</strong>.
+            </p>
+
+            <a href="{% url 'search' %}">
+                SEARCH AGAIN →
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+    {% else %}
+
+    <section class="search-features">
+
+        <div class="search-feature">
+            <span>◇</span>
+            <div>
+                <strong>FAST DELIVERY</strong>
+                <p>Quick & reliable delivery</p>
+            </div>
+        </div>
+
+        <div class="search-feature">
+            <span>♔</span>
+            <div>
+                <strong>PREMIUM QUALITY</strong>
+                <p>Best quality guaranteed</p>
+            </div>
+        </div>
+
+        <div class="search-feature">
+            <span>↻</span>
+            <div>
+                <strong>EASY RETURNS</strong>
+                <p>Hassle-free returns</p>
+            </div>
+        </div>
+
+        <div class="search-feature">
+            <span>♧</span>
+            <div>
+                <strong>SECURE PAYMENT</strong>
+                <p>100% secure checkout</p>
+            </div>
+        </div>
+
+    </section>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
+

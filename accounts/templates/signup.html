@@ -1,0 +1,368 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+LUNOIR | Create Account
+{% endblock %}
+
+{% block body_class %}
+auth-body
+{% endblock %}
+
+{% block content %}
+
+<div class="auth-page">
+
+    <div class="auth-card signup-card">
+
+
+
+        <!-- SIGNUP FORM -->
+
+        <div class="auth-form-section">
+
+            <div class="auth-form-wrapper">
+
+                <!-- BRAND -->
+
+                <div class="auth-brand">
+
+                    <div class="auth-star">
+                        ✦
+                    </div>
+
+                    <h1>
+                        LUNOIR
+                    </h1>
+
+                    <p>
+                        AI FASHION
+                    </p>
+
+                </div>
+
+
+                <!-- HEADING -->
+
+                <div class="auth-heading">
+
+                    <h2>
+                        Create Your Account
+                    </h2>
+
+                    <p>
+                        Join Lunoir and elevate your style.
+                    </p>
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <form method="POST" action="{% url 'signup' %}">
+
+                    {% csrf_token %}
+
+                    
+                    {% if error %}
+
+                    <div class="auth-error">
+                        {{ error }}
+                    </div>
+
+                    {% endif %}
+
+                    {% if messages %}
+    {% for message in messages %}
+        <div class="auth-success">
+            <div class="success-icon">✅</div>
+
+            <div class="success-content">
+                <p>
+                    <strong>
+                        CONGRATULATIONS!!!
+                    </strong>
+                    <br>
+                    You have created your account in LUNOIR 🥳
+                </p>
+            </div>
+
+            <button type="button" onclick="this.parentElement.remove()">❌</button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+
+
+                    <!-- FULL NAME -->
+
+                    <div class="auth-input-group">
+
+                        <label for="full_name">
+                            Full Name
+                        </label>
+
+                        <div class="auth-input">
+
+                            <span class="input-icon">
+                                <i class="fa-regular fa-user"></i>
+                            </span>
+
+                            <input type="text" id="username" name="username" placeholder="Enter your full name"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL / PHONE -->
+
+                    <div class="auth-input-group">
+
+                        <label for="signup_identifier">
+                            Email Address or Phone Number
+                        </label>
+
+                        <div class="auth-input">
+
+                            <span class="input-icon">
+                                <i class="fa-regular fa-envelope"></i>
+                            </span>
+
+                            <input type="text" id="signup_identifier" name="identifier"
+                                placeholder="Email address or phone number" required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="auth-input-group">
+
+                        <label for="signup_password">
+                            Password
+                        </label>
+
+                        <div class="auth-input">
+
+                            <span class="input-icon">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+
+                            <input type="password" id="signup_password" name="password" placeholder="Create a password"
+                                required>
+
+                            <button type="button" class="password-eye"
+                                onclick="togglePassword('signup_password', this)">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="auth-input-group">
+
+                        <label for="confirm_password">
+                            Confirm Password
+                        </label>
+
+                        <div class="auth-input">
+
+                            <span class="input-icon">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+
+                            <input type="password" id="confirm_password" name="confirm_password"
+                                placeholder="Confirm your password" required>
+
+                            <button type="button" class="password-eye"
+                                onclick="togglePassword('confirm_password', this)">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TERMS -->
+
+                    <label class="auth-terms">
+
+                        <input type="checkbox" required>
+
+                        <span>
+
+                            I agree to the
+
+                            <a href="#">
+                                Terms & Conditions
+                            </a>
+
+                            and
+
+                            <a href="#">
+                                Privacy Policy
+                            </a>
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- SIGNUP BUTTON -->
+
+                    <button type="submit" class="auth-main-button">
+
+                        <span>
+                            CREATE ACCOUNT
+                        </span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+
+                <!-- DIVIDER -->
+
+                <div class="auth-divider">
+
+                    <span></span>
+
+                    <p>
+                        or continue with
+                    </p>
+
+                    <span></span>
+
+                </div>
+
+
+                <!-- SOCIAL -->
+
+                <div class="auth-social">
+
+                    <button type="button">
+
+                        <i class="fa-brands fa-google"></i>
+
+                        <span>
+                            Google
+                        </span>
+
+                    </button>
+
+
+                    <button type="button">
+
+                        <i class="fa-brands fa-facebook-f"></i>
+
+                        <span>
+                            Facebook
+                        </span>
+
+                    </button>
+
+
+                    <button type="button">
+
+                        <i class="fa-brands fa-apple"></i>
+
+                        <span>
+                            Apple
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- LOGIN -->
+
+                <div class="auth-switch">
+
+                    <span>
+                        Already have an account?
+                    </span>
+
+                    <a href="{% url 'login' %}">
+                        Log in
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT IMAGE -->
+
+        <div class="auth-image signup-image">
+
+            <div class="auth-image-overlay"></div>
+
+            <div class="auth-image-content">
+
+                <span class="auth-eyebrow">
+                    LUNOIR
+                </span>
+
+                <h2>
+                    Your style.
+                    <br>
+                    Your identity.
+                </h2>
+
+                <p>
+                    Step into effortless luxury and discover
+                    fashion designed around you.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function togglePassword(inputId, button) {
+
+        const input = document.getElementById(inputId);
+        const icon = button.querySelector("i");
+
+        if (input.type === "password") {
+
+            input.type = "text";
+
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+
+        } else {
+
+            input.type = "password";
+
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+
+        }
+
+    }
+
+</script>
+
+{% endblock %}

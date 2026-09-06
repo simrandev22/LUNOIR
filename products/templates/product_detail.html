@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ product.name }} | LUNOIR
+{% endblock %}
+
+{% block content %}
+
+<section class="product-detail">
+
+    <!-- PRODUCT IMAGE PLACEHOLDER -->
+    <div class="product-detail-image">
+        <div class="image-placeholder">
+            <span>✦</span>
+            <p>LUNOIR</p>
+        </div>
+    </div>
+
+    <!-- PRODUCT INFORMATION -->
+    <div class="product-detail-info">
+
+        <p class="product-category">
+            {{ product.category }}
+        </p>
+
+        <h1>{{ product.name }}</h1>
+
+        <div class="product-rating">
+            ★★★★★
+            <span>4.8</span>
+        </div>
+
+        <p class="product-price">
+            ${{ product.price }}
+        </p>
+
+        {% if product.description %}
+            <p class="product-description">
+                {{ product.description }}
+            </p>
+        {% endif %}
+
+        <div class="product-actions">
+
+            <button class="add-cart-btn">
+                ADD TO CART
+            </button>
+
+            <button class="wishlist-btn">
+                ♡
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

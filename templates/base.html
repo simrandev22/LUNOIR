@@ -1,0 +1,426 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        LUNOIR
+        {% endblock title %}
+    </title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block extra_css %}
+
+    {% endblock extra_css %}
+
+</head>
+
+<body>
+
+    <!-- ===================================================== 
+     TOP ANNOUNCEMENT 
+===================================================== -->
+
+    <div class="announcement-bar">
+
+        <div class="announcement-item">
+            ✦ &nbsp; FREE SHIPPING ON ORDERS OVER $75
+        </div>
+
+        <div class="announcement-divider"></div>
+
+        <div class="announcement-item">
+            ♧ &nbsp; JOIN THE LUNOIR CLUB & GET 10% OFF
+        </div>
+
+        <div class="announcement-sparkle">
+            ✦
+        </div>
+
+    </div>
+
+
+    <!-- ===================================================== 
+     NAVBAR 
+===================================================== -->
+
+    <header class="navbar">
+
+        <div class="navbar-inner">
+
+            <!-- LOGO -->
+
+            <a href="/" class="brand">
+
+                <div class="brand-name">
+                    LUNOIR
+                </div>
+
+                <div class="brand-subtitle">
+                    AI FASHION
+                </div>
+
+            </a>
+
+
+            <!-- MAIN NAVIGATION -->
+
+            <nav class="main-nav">
+
+                <a href="/" class="nav-item active">
+                    HOME
+                </a>
+
+
+                <!-- PRODUCT -->
+
+                <div class="nav-dropdown">
+
+                    <a href="/products/" class="nav-item">
+                        PRODUCT <span class="arrow">⌄</span>
+                    </a>
+
+                    <div class="mega-menu">
+
+                        <div class="mega-column">
+
+                            <h4>WOMEN</h4>
+
+                            <a href="#">Dresses</a>
+                            <a href="#">One Piece</a>
+                            <a href="#">T-Shirts</a>
+                            <a href="#">Tops</a>
+                            <a href="#">Pants</a>
+                            <a href="#">Jeans</a>
+                            <a href="#">Skirts</a>
+                            <a href="#">Jackets</a>
+
+                        </div>
+
+
+                        <div class="mega-column">
+
+                            <h4>MEN</h4>
+
+                            <a href="#">T-Shirts</a>
+                            <a href="#">Shirts</a>
+                            <a href="#">Pants</a>
+                            <a href="#">Jeans</a>
+                            <a href="#">Jackets</a>
+                            <a href="#">Hoodies</a>
+                            <a href="#">Suits</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SHOES -->
+
+                <div class="nav-dropdown">
+
+                    <a href="#" class="nav-item">
+                        SHOES <span class="arrow">⌄</span>
+                    </a>
+
+                    <div class="mega-menu">
+
+                        <div class="mega-column">
+
+                            <h4>WOMEN</h4>
+
+                            <a href="#">Heels</a>
+                            <a href="#">Sneakers</a>
+                            <a href="#">Sandals</a>
+                            <a href="#">Flats</a>
+                            <a href="#">Boots</a>
+
+                        </div>
+
+
+                        <div class="mega-column">
+
+                            <h4>MEN</h4>
+
+                            <a href="#">Sneakers</a>
+                            <a href="#">Formal Shoes</a>
+                            <a href="#">Loafers</a>
+                            <a href="#">Boots</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MAKEUP -->
+
+                <div class="nav-dropdown">
+
+                    <a href="#" class="nav-item">
+                        MAKEUP <span class="arrow">⌄</span>
+                    </a>
+
+                    <div class="mega-menu">
+
+                        <div class="mega-column">
+
+                            <h4>FACE</h4>
+
+                            <a href="#">Foundation</a>
+                            <a href="#">Concealer</a>
+                            <a href="#">Blush</a>
+                            <a href="#">Highlighter</a>
+
+                        </div>
+
+
+                        <div class="mega-column">
+
+                            <h4>EYES & LIPS</h4>
+
+                            <a href="#">Lipstick</a>
+                            <a href="#">Lip Gloss</a>
+                            <a href="#">Mascara</a>
+                            <a href="#">Eyeliner</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <a href="#" class="nav-item">
+                    AI STUDIO
+                </a>
+
+                <a href="#" class="nav-item">
+                    NEW IN
+                </a>
+
+                <a href="#" class="nav-item sale">
+                    SALE
+                </a>
+
+            </nav>
+
+
+            <!-- RIGHT ACTIONS -->
+
+            <div class="nav-actions">
+
+                <a href="{% url 'search' %}" class="nav-icon">
+                    ⌕
+                </a>
+
+                <a href="{% url 'wishlist' %}" class="product-wishlist">
+                    ♡
+                </a>
+
+                <a href="{% url 'cart:cart' %}" class="nav-icon cart-icon">
+                    ♧
+                    <span class="cart-count">0</span>
+                </a>
+
+
+                {% if user.is_authenticated %}
+
+                <a href="{% url 'logout' %}" class="login-button">
+                    LOGOUT
+                </a>
+
+                {% else %}
+                  
+
+                <a href="{% url 'login' %}" class="login-button">
+                    LOGIN
+                </a>
+
+                <a href="{% url 'signup' %}" class="signup-button">
+                    SIGN UP
+                </a>
+
+                {% endif %}
+
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ===================================================== 
+     MAIN 
+===================================================== -->
+
+    <main>
+
+        {% block content %}
+        {% endblock content %}
+
+    </main>
+
+
+    <!-- ===================================================== 
+     FOOTER 
+===================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+
+            <!-- BRAND -->
+
+            <div class="footer-brand">
+
+                <h2>LUNOIR</h2>
+
+                <p>
+                    Fashion, personalized by AI.
+                </p>
+
+                <p>
+                    Discover your style. Find your fit.
+                    Wear what feels like you.
+                </p>
+
+                <div class="social-icons">
+
+                    <span>◎</span>
+                    <span>♪</span>
+                    <span>◉</span>
+                    <span>▶</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- SHOP -->
+
+            <div class="footer-column">
+
+                <h4>SHOP</h4>
+
+                <a href="#">Clothing</a>
+                <a href="#">Women</a>
+                <a href="#">Men</a>
+                <a href="#">Makeup</a>
+                <a href="#">New In</a>
+                <a href="#">Sale</a>
+
+            </div>
+
+
+            <!-- AI -->
+
+            <div class="footer-column">
+
+                <h4>AI FASHION</h4>
+
+                <a href="#">AI Stylist</a>
+                <a href="#">AI Search</a>
+                <a href="#">Virtual Try-On</a>
+                <a href="#">Recommendations</a>
+                <a href="#">Smart Size</a>
+
+            </div>
+
+
+            <!-- HELP -->
+
+            <div class="footer-column">
+
+                <h4>HELP</h4>
+
+                <a href="#">Contact Us</a>
+                <a href="#">FAQ</a>
+                <a href="#">Shipping</a>
+                <a href="#">Returns</a>
+                <a href="#">Size Guide</a>
+                <a href="#">Track Order</a>
+
+            </div>
+
+
+            <!-- ACCOUNT -->
+
+            <div class="footer-column">
+
+                <h4>ACCOUNT</h4>
+
+                <a href="#">Login</a>
+                <a href="#">Sign Up</a>
+                <a href="#">Wishlist</a>
+                <a href="#">Orders</a>
+                <a href="#">LUNOIR Club</a>
+
+            </div>
+
+
+            <!-- APP -->
+
+            <div class="footer-column">
+
+                <h4>DOWNLOAD APP</h4>
+
+                <p class="app-text">
+                    Get the LUNOIR app
+                    <br>
+                    for a better experience.
+                </p>
+
+                <div class="app-buttons">
+
+                    <div class="app-button">
+                         App Store
+                    </div>
+
+                    <div class="app-button">
+                        ▶ Google Play
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 LUNOIR. All rights reserved.
+            </p>
+
+            <div>
+
+                <a href="#">
+                    Privacy Policy
+                </a>
+
+                <a href="#">
+                    Terms & Conditions
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

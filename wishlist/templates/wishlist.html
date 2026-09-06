@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+LUNOIR | Wishlist
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'css/wishlist.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<section class="wishlist-page">
+
+    <!-- HERO -->
+
+    <div class="wishlist-hero">
+
+        <div class="wishlist-eyebrow">
+            ✦ YOUR CURATED COLLECTION
+        </div>
+
+        <h1>
+            My <em>Wishlist</em>
+        </h1>
+
+        <p>
+            Pieces you've saved for your next look.
+        </p>
+
+    </div>
+
+
+    {% if wishlist_items %}
+
+    <!-- WISHLIST HEADER -->
+
+    <div class="wishlist-heading">
+
+        <div>
+            <span class="small-label">
+                YOUR SAVED PIECES
+            </span>
+
+            <h2>
+                Things You're Loving
+            </h2>
+        </div>
+
+        <div class="wishlist-count">
+            {{ wishlist_items|length }} ITEMS
+        </div>
+
+    </div>
+
+
+    <!-- PRODUCTS -->
+
+    <div class="wishlist-grid">
+
+        {% for item in wishlist_items %}
+
+        <article class="wishlist-card">
+
+            <div class="wishlist-image">
+
+                {% if item.product.image %}
+
+                    <img
+                        src="{{ item.product.image.url }}"
+                        alt="{{ item.product.name }}"
+                    >
+
+                {% else %}
+
+                    <div class="wishlist-placeholder">
+                        <span> LUNOIR </span>
+                    </div>
+
+                {% endif %}
+
+
+                <div class="wishlist-overlay">
+
+                    <a
+                        href="#"
+                        class="view-product"
+                    >
+                        VIEW PRODUCT →
+                    </a>
+
+                </div>
+
+
+                <button
+                    class="remove-wishlist"
+                    type="button"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div class="wishlist-info">
+
+                <div class="wishlist-category">
+                    {{ item.product.category }}
+                </div>
+
+                <h3>
+                    {{ item.product.name }}
+                </h3>
+
+                <div class="wishlist-bottom">
+
+                    <strong>
+                        ${{ item.product.price }}
+                    </strong>
+
+                    <button class="add-cart">
+                        ADD TO BAG
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- CONTINUE SHOPPING -->
+
+    <div class="wishlist-bottom-section">
+
+        <div class="wishlist-line"></div>
+
+        <a
+            href="{% url 'products:products' %}"
+            class="continue-shopping"
+        >
+            ← CONTINUE SHOPPING
+        </a>
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- EMPTY WISHLIST -->
+
+    <div class="empty-wishlist">
+
+        <div class="empty-icon">
+            ♡
+        </div>
+
+        <span class="empty-label">
+            YOUR WISHLIST IS WAITING
+        </span>
+
+        <h2>
+            Nothing saved <em>yet.</em>
+        </h2>
+
+        <p>
+            Discover something you love and save it here for later.
+        </p>
+
+        <a
+            href="{% url 'products:products' %}"
+            class="discover-button"
+        >
+            DISCOVER PRODUCTS
+            <span>→</span>
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,688 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+LUNOIR | Fashion, Personalized by AI
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-left">
+
+        <p class="hero-eyebrow">
+            AI-POWERED FASHION ✦
+        </p>
+
+        <h1>
+            STYLE THAT
+            <br>
+            <em>UNDERSTANDS</em> YOU.
+        </h1>
+
+        <p class="hero-description">
+
+            Discover fashion curated around your
+            <br>
+            style, body and personality.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a href="#" class="primary-button">
+                SHOP COLLECTION
+            </a>
+
+            <a href="#" class="outline-button">
+                ✦ &nbsp; TRY AI STYLIST
+            </a>
+
+        </div>
+
+
+        <div class="customers">
+
+            <div class="customer-faces">
+
+                <span>👩🏻</span>
+                <span>👩🏼</span>
+                <span>👩🏽</span>
+                <span>👩🏻</span>
+                <span>👩🏼</span>
+
+            </div>
+
+            <p>
+                Loved by 50,000+ customers
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-right">
+
+        <div class="hero-model">
+
+
+            <img src="{% static 'images/hero-model.png' %}" 
+            style="width: 100%; height: 100%; object-fit: cover;object-position: 100% top;"
+           
+            alt="LUNOIR fashion model">
+             
+
+
+
+        </div>
+
+    </div>
+
+    </div>
+    <div class="model-label">
+
+        <small>
+            YOUR STYLE
+        </small>
+
+        <strong>
+            PERSONALIZED
+        </strong>
+
+        <span>
+            Powered by LUNOIR AI
+        </span>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BENEFITS
+===================================================== -->
+
+<section class="benefits">
+
+    <div class="benefit">
+
+        <div class="benefit-icon">
+            🚚
+        </div>
+
+        <div>
+
+            <strong>
+                FREE SHIPPING
+            </strong>
+
+            <span>
+                On orders over $75
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="benefit">
+
+        <div class="benefit-icon">
+            ↻
+        </div>
+
+        <div>
+
+            <strong>
+                EASY RETURNS
+            </strong>
+
+            <span>
+                30-day return policy
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="benefit">
+
+        <div class="benefit-icon">
+            ◇
+        </div>
+
+        <div>
+
+            <strong>
+                SECURE PAYMENTS
+            </strong>
+
+            <span>
+                100% protected
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="benefit">
+
+        <div class="benefit-icon">
+            ♕
+        </div>
+
+        <div>
+
+            <strong>
+                VIP CLUB
+            </strong>
+
+            <span>
+                Exclusive rewards
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     AI FEATURES
+===================================================== -->
+
+<section class="future-section">
+
+    <p class="section-eyebrow">
+        THE FUTURE OF SHOPPING ✦
+    </p>
+
+    <h2>
+        Fashion, but <em>smarter.</em>
+    </h2>
+
+    <p class="section-description">
+        LUNOIR combines fashion with AI to help you
+        discover what actually suits you.
+    </p>
+
+
+    <div class="ai-features">
+
+        <div class="ai-feature-card">
+
+            <div class="round-icon">
+                ♧
+            </div>
+
+            <div>
+
+                <h3>
+                    AI STYLIST
+                </h3>
+
+                <p>
+                    Get outfit ideas based on your vibe,
+                    occasion and preferences.
+                </p>
+
+                <a href="#">
+                    EXPLORE →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="ai-feature-card">
+
+            <div class="round-icon">
+                ♙
+            </div>
+
+            <div>
+
+                <h3>
+                    VIRTUAL TRY-ON
+                </h3>
+
+                <p>
+                    See how outfits look on you
+                    before you buy.
+                </p>
+
+                <a href="#">
+                    TRY IT NOW →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="ai-feature-card">
+
+            <div class="round-icon">
+                ▣
+            </div>
+
+            <div>
+
+                <h3>
+                    AI IMAGE SEARCH
+                </h3>
+
+                <p>
+                    Upload an image and find
+                    similar styles instantly.
+                </p>
+
+                <a href="#">
+                    SEARCH NOW →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CLOTHING
+===================================================== -->
+
+<section class="shop-section">
+
+    <div class="section-heading">
+
+        <p class="section-eyebrow">
+            EXPLORE FASHION
+        </p>
+
+        <h2>
+            PRODUCTS
+        </h2>
+
+        <div class="gender-switch">
+
+            <button class="active">
+                WOMEN
+            </button>
+
+            <button>
+                MEN
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="category-cards">
+
+
+        <a href="#" class="category-card">
+
+            <div class="category-image dress-image">
+
+                <img src="{% static 'images/dresses.png' %}"
+                    style="width: 100%; height: 100%; object-fit: cover;object-position: top center; border-radius: 12px;"
+                    alt="Dresses">
+
+            </div>
+
+            <span>
+                DRESSES
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category-card">
+
+            <div class="category-image tshirt-image">
+                <img src="{% static 'images/tshirt.png' %}"
+                    style="width: 100%; height: 100%; object-fit: cover;object-position: top center; border-radius: 12px;"
+                    alt="T-Shirts">
+            </div>
+
+            <span>
+                T-SHIRTS
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category-card">
+
+            <div class="category-image pants-image">
+                <img src="{% static 'images/pant.png' %}"
+                    style="width: 100%; height: 100%; object-fit: cover;object-position: top center; border-radius: 12px;"
+                    alt="Pants">
+            </div>
+
+            <span>
+                PANTS
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category-card">
+
+            <div class="category-image onepiece-image">
+                <img src="{% static 'images/one-piece.png' %}"
+                    style="width: 100%; height: 100%; object-fit: cover;object-position:top center; border-radius: 12px;"
+                    alt="One Piece">
+            </div>
+
+            <span>
+                ONE-PIECE
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category-card">
+
+            <div class="category-image shoes-image">
+                <img src="{% static 'images/shoes.png' %}"
+                    style="width: 100%; height: 100%; object-fit: cover;object-position: center; border-radius: 12px;"
+                    alt="Shoes">
+            </div>
+
+            <span>
+                SHOES
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category-card">
+
+            <div class="category-image heels-image">
+                <img src="{% static 'images/heels.png' %}"
+                    style="width: 100%; height: 100%; object-fit: cover;object-position:  center; border-radius: 12px;"
+                    alt="Heels">
+            </div>
+
+            <span>
+                HEELS
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MAKEUP
+===================================================== -->
+
+<section class="shop-section beauty-section">
+
+    <div class="section-heading">
+
+        <p class="section-eyebrow">
+            BEAUTY FOR YOU
+        </p>
+
+        <h2>
+            Makeup & Beauty
+        </h2>
+
+    </div>
+
+
+    <div class="category-cards">
+
+
+        <a href="#" class="category-card">
+
+            <div class="beauty-image">
+                <img src="{% static 'images/lipstick.png' %}" style="width: 100%; height: 100%;  border-radius: 10px;"
+                    alt="Lipstick">
+            </div>
+
+            <span>
+                LIPSTICKS
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category-card">
+
+            <div class="beauty-image">
+                <img src="{% static 'images/foundation.png' %}" style="width: 100%; height: 100%;  border-radius: 10px;"
+                    alt="Foundation">
+            </div>
+
+            <span>
+                FOUNDATION
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category-card">
+
+            <div class="beauty-image">
+                <img src="{% static 'images/eyeshadow.png' %}" style="width: 100%; height: 100%;  border-radius: 10px;"
+                    alt="Eye Shadow">
+            </div>
+
+            <span>
+                EYE SHADOW
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category-card">
+
+            <div class="beauty-image">
+                <img src="{% static 'images/skincare.png' %}" style="width: 100%; height: 100%;  border-radius: 10px;"
+                    alt="Skincare">
+            </div>
+
+            <span>
+                SKINCARE
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category-card">
+
+            <div class="beauty-image">
+                <img src="{% static 'images/brush.png' %}" style="width: 100%; height: 100%;  border-radius: 10px;"
+                    alt="Beauty Tools">
+            </div>
+
+            <span>
+                BEAUTY TOOLS
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category-card">
+
+            <div class="beauty-image">
+                <img src="{% static 'images/perfume.png' %}" style="width: 100%; height: 100%;  border-radius: 10px;"
+                    alt="Perfume">
+            </div>
+
+            <span>
+                PERFUME
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TRENDING
+===================================================== -->
+
+<section class="trending-section">
+
+    <div class="trending-header">
+
+        <h3>
+            TRENDING NOW
+        </h3>
+
+        <a href="#">
+            VIEW ALL →
+        </a>
+
+    </div>
+
+<!-- =====================================================
+     AI PROMO BANNERS
+===================================================== -->
+
+<section class="promo-section">
+
+
+    <div class="promo-card virtual">
+
+        <div class="promo-content">
+
+            <p>
+                VIRTUAL TRY-ON
+            </p>
+
+            <h2>
+                See it on you,
+                <br>
+                before you buy.
+            </h2>
+
+            <span>
+                Try our AI-powered virtual try-on
+                and shop with confidence.
+            </span>
+
+            <a href="#">
+                TRY NOW →
+            </a>
+
+        </div>
+
+
+        <div class="promo-visual phone">
+            📱
+        </div>
+
+    </div>
+
+
+    <div class="promo-card stylist">
+
+        <div class="promo-content">
+
+            <p>
+                AI STYLIST
+            </p>
+
+            <h2>
+                Your style, our AI.
+                <br>
+                The perfect match.
+            </h2>
+
+            <span>
+                Get personalized outfit recommendations
+                that truly match your aesthetic.
+            </span>
+
+            <a href="#">
+                GET RECOMMENDATIONS →
+            </a>
+
+        </div>
+
+
+        <div class="promo-visual clothes">
+            👚
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     NEWSLETTER
+===================================================== -->
+
+<section class="club-section">
+
+    <div class="club-icon">
+        ✉
+    </div>
+
+
+    <div class="club-text">
+
+        <h3>
+            Join The LUNOIR Club
+        </h3>
+
+        <p>
+            Get 10% off your first order and early access
+            to exclusive drops and offers.
+        </p>
+
+    </div>
+
+
+    <form class="club-form">
+
+        <input type="email" placeholder="Enter your email">
+
+        <button>
+            JOIN CLUB
+        </button>
+
+    </form>
+
+
+    <div class="club-stars">
+        ✦
+    </div>
+
+</section>
+
+
+{% endblock %}
