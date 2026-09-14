@@ -22,7 +22,6 @@ LUNOIR | Your Cart
     <div class="cart-container">
 
         <!-- BREADCRUMB -->
-
         <div class="cart-breadcrumb">
             <a href="/">Home</a>
             <span>›</span>
@@ -31,7 +30,6 @@ LUNOIR | Your Cart
 
 
         <!-- PAGE HEADING -->
-
         <div class="cart-heading">
 
             <div class="heading-sparkle">✦</div>
@@ -54,7 +52,6 @@ LUNOIR | Your Cart
 
 
         <!-- MAIN CART LAYOUT -->
-
         <div class="cart-layout">
 
 
@@ -64,22 +61,80 @@ LUNOIR | Your Cart
 
             <div class="cart-left">
 
+                {% if cart_items %}
 
-                <!-- EMPTY CART CARD -->
+                <!-- =================================================
+                     CART ITEMS
+                ================================================== -->
+
+                <div class="cart-items">
+
+                    {% for item in cart_items %}
+
+                    <div class="cart-item">
+
+                        <!-- PRODUCT IMAGE -->
+                        <div class="cart-item-image">
+
+                            {% if item.product.image %}
+                                <img
+                                    src="{{ item.product.image.url }}"
+                                    alt="{{ item.product.name }}"
+                                >
+                            {% else %}
+                                <div class="no-image">
+                                    LUNOIR
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- PRODUCT INFORMATION -->
+                        <div class="cart-item-info">
+
+                            <h3>
+                                {{ item.product.name }}
+                            </h3>
+
+                            {% if item.product.category %}
+                                <p>
+                                    {{ item.product.category.name }}
+                                </p>
+                            {% endif %}
+
+                            <span>
+                                Quantity: {{ item.quantity }}
+                            </span>
+
+                        </div>
+
+
+                        <!-- PRODUCT PRICE -->
+                        <div class="cart-item-price">
+
+                            <strong>
+                                ${{ item.subtotal }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                {% else %}
+
+                <!-- =================================================
+                     EMPTY CART
+                ================================================== -->
 
                 <div class="empty-cart-card">
 
-                    <div class="empty-decoration decoration-left">
-                        ❋
-                    </div>
-
-                    <div class="empty-decoration decoration-right">
-                        ✦
-                    </div>
-
-
                     <!-- SHOPPING BAG -->
-
                     <div class="bag-illustration">
 
                         <div class="bag-circle"></div>
@@ -89,9 +144,7 @@ LUNOIR | Your Cart
                             <div class="bag-handle"></div>
 
                             <div class="bag-body">
-
                                 <span>LUNOIR</span>
-
                             </div>
 
                             <div class="bag-heart">
@@ -136,7 +189,10 @@ LUNOIR | Your Cart
                     </p>
 
 
-                    <a href="{% url 'products:products' %}" class="continue-shopping">
+                    <a
+                        href="{% url 'products:products' %}"
+                        class="continue-shopping"
+                    >
 
                         <span>
                             CONTINUE SHOPPING
@@ -150,8 +206,12 @@ LUNOIR | Your Cart
 
                 </div>
 
+                {% endif %}
 
-                <!-- BENEFITS -->
+
+                <!-- =================================================
+                     BENEFITS
+                ================================================== -->
 
                 <div class="benefits-card">
 
@@ -231,7 +291,9 @@ LUNOIR | Your Cart
             <aside class="cart-sidebar">
 
 
-                <!-- ORDER SUMMARY -->
+                <!-- =================================================
+                     ORDER SUMMARY
+                ================================================== -->
 
                 <div class="summary-card">
 
@@ -248,41 +310,65 @@ LUNOIR | Your Cart
                     </div>
 
 
+                    <!-- SUBTOTAL -->
                     <div class="summary-row">
 
-                        <span>Subtotal</span>
+                        <span>
+                            Subtotal
+                        </span>
 
-                        <strong>$0.00</strong>
+                        <strong>
+                            $0.00
+                        </strong>
 
                     </div>
 
 
+                    <!-- SHIPPING -->
                     <div class="summary-row">
 
                         <div>
-                            <span>Shipping</span>
-                            <small>Calculated at checkout</small>
+
+                            <span>
+                                Shipping
+                            </span>
+
+                            <small>
+                                Calculated at checkout
+                            </small>
+
                         </div>
 
-                        <strong>—</strong>
+                        <strong>
+                            —
+                        </strong>
 
                     </div>
 
 
+                    <!-- DISCOUNT -->
                     <div class="summary-row">
 
                         <div>
-                            <span>Discount</span>
-                            <small>Add a promo code at checkout</small>
+
+                            <span>
+                                Discount
+                            </span>
+
+                            <small>
+                                Add a promo code at checkout
+                            </small>
+
                         </div>
 
-                        <strong>—</strong>
+                        <strong>
+                            —
+                        </strong>
 
                     </div>
 
 
                     <!-- TOTAL -->
-
                     <div class="total-box">
 
                         <div>
@@ -305,8 +391,10 @@ LUNOIR | Your Cart
 
 
                     <!-- CHECKOUT -->
-
-                    <button class="checkout-button" disabled>
+                    <button
+                        class="checkout-button"
+                        disabled
+                    >
 
                         <span>♧</span>
 
@@ -316,12 +404,13 @@ LUNOIR | Your Cart
 
 
                     <!-- PAYMENT -->
-
                     <div class="payment-divider">
 
                         <span></span>
 
-                        <p>WE ACCEPT</p>
+                        <p>
+                            WE ACCEPT
+                        </p>
 
                         <span></span>
 
@@ -330,7 +419,9 @@ LUNOIR | Your Cart
 
                     <div class="payment-methods">
 
-                        <span class="visa">VISA</span>
+                        <span class="visa">
+                            VISA
+                        </span>
 
                         <span class="mastercard">
                             ●●
@@ -353,7 +444,9 @@ LUNOIR | Your Cart
                 </div>
 
 
-                <!-- FREE SHIPPING -->
+                <!-- =================================================
+                     FREE SHIPPING
+                ================================================== -->
 
                 <div class="shipping-card">
 
@@ -381,9 +474,13 @@ LUNOIR | Your Cart
 
                         <div class="progress-labels">
 
-                            <span>$0.00</span>
+                            <span>
+                                $0.00
+                            </span>
 
-                            <span>$75.00</span>
+                            <span>
+                                $75.00
+                            </span>
 
                         </div>
 
@@ -394,9 +491,12 @@ LUNOIR | Your Cart
             </aside>
 
         </div>
+        <!-- END CART LAYOUT -->
 
     </div>
+    <!-- END CART CONTAINER -->
 
 </section>
+<!-- END CART PAGE -->
 
 {% endblock %}

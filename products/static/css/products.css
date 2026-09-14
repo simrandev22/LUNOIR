@@ -1185,7 +1185,7 @@ button {
 
     position: absolute;
 
-    right: 11px;
+    right: 20px;
 
     top: 11px;
 
@@ -1205,9 +1205,24 @@ button {
 
     color: #45514e;
 
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    
+
 }
 
+.wishlist i, 
+.wishlist svg,
+.wishlist span {
+    margin: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+}
 
 /* QUICK ADD */
 

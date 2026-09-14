@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 
-
 {% load static %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/products.css' %}">
-  
 {% endblock extra_css %}
-<link rel="stylesheet" href="{% static '' %}">
+
 
 {% block content %}
-  
+
 
 <!-- =====================================================
      HERO
@@ -18,76 +16,46 @@
 
 <section class="product-hero">
 
-
-    <!-- HERO TEXT -->
-
     <div class="hero-content">
 
         <div class="breadcrumb">
-
             Home
-
             <span>›</span>
-
             Products
-
         </div>
-
 
         <p class="eyebrow">
             ✦ DISCOVER YOUR STYLE
         </p>
 
-
         <h1>
-
             Find Your
-
             <br>
-
             Signature
-
             <em>Style</em>
-
         </h1>
-
 
         <div class="hero-line"></div>
 
-
         <p class="hero-description">
-
             Explore timeless pieces and trendy looks
             <br>
-
             designed to match your unique vibe.
-
         </p>
 
-
         <a href="#products" class="hero-button">
-
             SHOP NOW
-
-            <span>
-                →
-            </span>
-
+            <span>→</span>
         </a>
 
     </div>
-
 
 
     <!-- HERO IMAGE -->
 
     <div class="hero-image">
 
-        <img
-            src="{% static 'images/product-hero.png' %}"
-            alt="LUNOIR Fashion"
-        >
-
+        <img src="{% static 'images/product-hero.png' %}" alt="LUNOIR Fashion">
 
         <!-- AI CARD -->
 
@@ -98,13 +66,9 @@
             </p>
 
             <h2>
-
                 Personalized
-
                 <br>
-
                 Just for You
-
             </h2>
 
             <a href="#">
@@ -118,70 +82,31 @@
 </section>
 
 
-
 <!-- =====================================================
      CATEGORY PILLS
 ===================================================== -->
 
 <section class="categories">
 
-    <a href="#" class="category active">
+    <a href="{% url 'products:products' %}"
+       class="category {% if not selected_category %}active{% endif %}">
 
         <span>▦</span>
-
         All
 
     </a>
 
 
-    <a href="#" class="category">
-        👗 Women
+    {% for category in categories %}
+
+    <a href="{% url 'products:products' %}?category={{ category.slug }}"
+       class="category {% if selected_category == category.slug %}active{% endif %}">
+
+        {{ category.name }}
+
     </a>
 
-
-    <a href="#" class="category">
-        👕 Men
-    </a>
-
-
-    <a href="#" class="category">
-        👗 One Piece
-    </a>
-
-
-    <a href="#" class="category">
-        👕 T-Shirts
-    </a>
-
-
-    <a href="#" class="category">
-        👖 Pants
-    </a>
-
-
-    <a href="#" class="category">
-        👗 Dresses
-    </a>
-
-
-    <a href="#" class="category">
-        👚 Tops
-    </a>
-
-
-    <a href="#" class="category">
-        👖 Jeans
-    </a>
-
-
-    <a href="#" class="category">
-        ♡ Skirts
-    </a>
-
-
-    <a href="#" class="category">
-        🧥 Jackets
-    </a>
+    {% endfor %}
 
 </section>
 
@@ -214,107 +139,119 @@
         </div>
 
 
-
         <!-- CATEGORY -->
 
         <div class="filter-section">
 
-            <h4>
-                CATEGORIES
-            </h4>
+            <h4>CATEGORIES</h4>
 
 
-            <label class="selected">
+            <!-- ALL CATEGORIES -->
 
-                <input
-                    type="radio"
-                    name="category"
-                    checked
-                >
+            <label class="{% if not selected_category %}selected{% endif %}">
+
+                <input type="radio"
+                       name="category"
+                       onclick="window.location.href='{% url 'products:products' %}'"
+                       {% if not selected_category %}checked{% endif %}>
 
                 All Categories
 
             </label>
 
 
-            <label>
+            <!-- WOMEN -->
 
-                <input
-                    type="radio"
-                    name="category"
-                >
+            <label class="{% if selected_category == 'women' %}selected{% endif %}">
+
+                <input type="radio"
+                       name="category"
+                       onclick="window.location.href='{% url 'products:products' %}?category=women'"
+                       {% if selected_category == 'women' %}checked{% endif %}>
 
                 Women
 
             </label>
 
 
-            <label>
+            <!-- MEN -->
 
-                <input
-                    type="radio"
-                    name="category"
-                >
+            <label class="{% if selected_category == 'men' %}selected{% endif %}">
+
+                <input type="radio"
+                       name="category"
+                       onclick="window.location.href='{% url 'products:products' %}?category=men'"
+                       {% if selected_category == 'men' %}checked{% endif %}>
 
                 Men
 
             </label>
 
 
-            <label>
+            <!-- ONE PIECE -->
 
-                <input
-                    type="radio"
-                    name="category"
-                >
+            <label class="{% if selected_category == 'one-piece' %}selected{% endif %}">
+
+                <input type="radio"
+                       name="category"
+                       onclick="window.location.href='{% url 'products:products' %}?category=one-piece'"
+                       {% if selected_category == 'one-piece' %}checked{% endif %}>
 
                 One Piece
 
             </label>
 
 
-            <label>
+            <!-- T-SHIRTS -->
 
-                <input
-                    type="radio"
-                    name="category"
-                >
+            <label class="{% if selected_category == 't-shirts' %}selected{% endif %}">
+
+                <input type="radio"
+                       name="category"
+                       onclick="window.location.href='{% url 'products:products' %}?category=t-shirts'"
+                       {% if selected_category == 't-shirts' %}checked{% endif %}>
 
                 T-Shirts
 
             </label>
 
 
-            <label>
+            <!-- PANTS -->
 
-                <input
-                    type="radio"
-                    name="category"
-                >
+            <label class="{% if selected_category == 'pants' %}selected{% endif %}">
+
+                <input type="radio"
+                       name="category"
+                       onclick="window.location.href='{% url 'products:products' %}?category=pants'"
+                       {% if selected_category == 'pants' %}checked{% endif %}>
 
                 Pants
 
             </label>
 
 
-            <label>
+            <!-- DRESSES -->
 
-                <input
-                    type="radio"
-                    name="category"
-                >
+            <label class="{% if selected_category == 'dresses' %}selected{% endif %}">
+
+                <input type="radio"
+                       name="category"
+                       onclick="window.location.href='{% url 'products:products' %}?category=dresses'"
+                       {% if selected_category == 'dresses' %}checked{% endif %}>
 
                 Dresses
 
             </label>
 
 
-            <label>
+            <!-- TOPS -->
 
-                <input
-                    type="radio"
-                    name="category"
-                >
+            <label class="{% if selected_category == 'tops' %}selected{% endif %}">
+
+                <input type="radio"
+                       name="category"
+                       onclick="window.location.href='{% url 'products:products' %}?category=tops'"
+                       {% if selected_category == 'tops' %}checked{% endif %}>
 
                 Tops
 
@@ -328,8 +265,9 @@
         </div>
 
 
-
-        <!-- PRICE -->
+        <!-- =================================================
+             PRICE
+        ================================================== -->
 
         <div class="filter-section">
 
@@ -337,13 +275,11 @@
                 PRICE RANGE
             </h4>
 
-            <input
-                type="range"
-                min="0"
-                max="200"
-                value="200"
-                class="price-slider"
-            >
+            <input type="range"
+                   min="0"
+                   max="200"
+                   value="200"
+                   class="price-slider">
 
             <div class="price-values">
 
@@ -360,15 +296,15 @@
         </div>
 
 
-
-        <!-- COLORS -->
+        <!-- =================================================
+             COLORS
+        ================================================== -->
 
         <div class="filter-section">
 
             <h4>
                 COLORS
             </h4>
-
 
             <div class="colors">
 
@@ -389,15 +325,15 @@
         </div>
 
 
-
-        <!-- SIZE -->
+        <!-- =================================================
+             SIZE
+        ================================================== -->
 
         <div class="filter-section">
 
             <h4>
                 SIZE
             </h4>
-
 
             <div class="sizes">
 
@@ -437,27 +373,51 @@
                     Sort by:
                 </span>
 
-                <select>
 
-                    <option>
+                <select onchange="this.form.submit()"
+                        form="sort-form">
+
+
+                    <option value="popular"
+                            {% if selected_sort == "popular" %}selected{% endif %}>
                         Popular
                     </option>
 
-                    <option>
+
+                    <option value="newest"
+                            {% if selected_sort == "newest" %}selected{% endif %}>
                         Newest
                     </option>
 
-                    <option>
+
+                    <option value="price_low"
+                            {% if selected_sort == "price_low" %}selected{% endif %}>
                         Price: Low to High
                     </option>
 
-                    <option>
+
+                    <option value="price_high"
+                            {% if selected_sort == "price_high" %}selected{% endif %}>
                         Price: High to Low
                     </option>
+
 
                 </select>
 
             </div>
+
+
+            <form id="sort-form" method="GET">
+
+                {% if selected_category %}
+
+                <input type="hidden"
+                       name="category"
+                       value="{{ selected_category }}">
+
+                {% endif %}
+
+            </form>
 
 
             <p>
@@ -481,566 +441,123 @@
 
 
 
-        <!-- PRODUCT GRID -->
+        <!-- =================================================
+             PRODUCT GRID
+        ================================================== -->
 
         <div class="product-grid">
 
 
-            <!-- PRODUCT 1 -->
+            {% for product in products %}
+
 
             <article class="product-card">
 
-                <div class="product-image">
-
-                    <span class="badge">
-                        NEW
-                    </span>
-
-                    
-                        <a href="{% url 'wishlist' %}" class="wishlist" title="Add to wishlist">♡</a>
-                    
-
-                    <img
-                        src="{% static 'images/product-1.png' %}"
-                        alt="Satin Slip Dress"
-                    >
-
-                    <button class="quick-add">
-                        +
-                    </button>
-
-                </div>
-
-                <h3>
-                    Satin Slip Dress
-                </h3>
-
-                <p>
-                    Women
-                </p>
-
-                <strong>
-                    $89.00
-                </strong>
-
-                <div class="rating">
-                    ★★★★★
-                    <span>
-                        (24)
-                    </span>
-                </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 2 -->
-
-            <article class="product-card">
 
                 <div class="product-image">
 
-                    <span class="badge trending">
-                        TRENDING
-                    </span>
 
-                    <button class="wishlist">
+                    <!-- WISHLIST -->
+
+                    <a href="{% url 'wishlist' %}"
+                       class="wishlist"
+                       title="Add to wishlist">
+
                         ♡
-                    </button>
 
-                    <img
-                        src="{% static 'images/product-2.png' %}"
-                        alt="Minimal Blazer"
-                    >
+                    </a>
 
-                    <button class="quick-add">
+
+                    <!-- PRODUCT IMAGE -->
+
+                    {% if product.image %}
+
+                    <img src="{{ product.image.url }}"
+                         alt="{{ product.name }}">
+
+                    {% endif %}
+
+
+                    <!-- PRODUCT DETAIL BUTTON -->
+
+                    <button type="button"
+                            class="quick-add"
+                            onclick="window.location.href='{% url 'products:productsdetail' product.pk %}'">
+
                         +
+
                     </button>
+
 
                 </div>
 
+
+                <!-- PRODUCT NAME -->
+
                 <h3>
-                    Minimal Blazer
+                    {{ product.name }}
                 </h3>
 
+
+                <!-- CATEGORY -->
+
                 <p>
-                    Women
+                    {{ product.category.name }}
                 </p>
 
+
+                <!-- PRICE -->
+
                 <strong>
-                    $119.00
+                    ${{ product.price }}
                 </strong>
+
+
+                <!-- RATING -->
 
                 <div class="rating">
                     ★★★★★
-                    <span>
-                        (42)
-                    </span>
                 </div>
+
+
+                <!-- STOCK -->
+
+                {% if product.stock > 0 %}
+
+                <small>
+                    In Stock
+                </small>
+
+                {% else %}
+
+                <small>
+                    Out of Stock
+                </small>
+
+                {% endif %}
+
 
             </article>
 
 
+            {% empty %}
 
-            <!-- PRODUCT 3 -->
 
-            <article class="product-card">
+            <p class="no-products">
+                No products available.
+            </p>
 
-                <div class="product-image">
 
-                    <span class="badge">
-                        NEW
-                    </span>
+            {% endfor %}
 
-                    <button class="wishlist">
-                        ♡
-                    </button>
-
-                    <img
-                        src="{% static 'images/product-3.png' %}"
-                        alt="Classic T-Shirt"
-                    >
-
-                    <button class="quick-add">
-                        +
-                    </button>
-
-                </div>
-
-                <h3>
-                    Classic T-Shirt
-                </h3>
-
-                <p>
-                    Unisex
-                </p>
-
-                <strong>
-                    $39.00
-                </strong>
-
-                <div class="rating">
-                    ★★★★★
-                    <span>
-                        (18)
-                    </span>
-                </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 4 -->
-
-            <article class="product-card">
-
-                <div class="product-image">
-
-                    <span class="badge">
-                        NEW
-                    </span>
-
-                    <button class="wishlist">
-                        ♡
-                    </button>
-
-                    <img
-                        src="{% static 'images/product-4.png' %}"
-                        alt="Wide Leg Pants"
-                    >
-
-                    <button class="quick-add">
-                        +
-                    </button>
-
-                </div>
-
-                <h3>
-                    Wide Leg Pants
-                </h3>
-
-                <p>
-                    Women
-                </p>
-
-                <strong>
-                    $69.00
-                </strong>
-
-                <div class="rating">
-                    ★★★★★
-                    <span>
-                        (18)
-                    </span>
-                </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 5 -->
-
-            <article class="product-card">
-
-                <div class="product-image">
-
-                    <button class="wishlist">
-                        ♡
-                    </button>
-
-                    <img
-                        src="{% static 'images/product-5.png' %}"
-                        alt="Linen Shirt"
-                    >
-
-                    <button class="quick-add">
-                        +
-                    </button>
-
-                </div>
-
-                <h3>
-                    Linen Shirt
-                </h3>
-
-                <p>
-                    Men
-                </p>
-
-                <strong>
-                    $59.00
-                </strong>
-
-                <div class="rating">
-                    ★★★★★
-                    <span>
-                        (26)
-                    </span>
-                </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 6 -->
-
-            <article class="product-card">
-
-                <div class="product-image">
-
-                    <span class="badge bestseller">
-                        BESTSELLER
-                    </span>
-
-                    <button class="wishlist">
-                        ♡
-                    </button>
-
-                    <img
-                        src="{% static 'images/product-6.png' %}"
-                        alt="Everyday Jeans"
-                    >
-
-                    <button class="quick-add">
-                        +
-                    </button>
-
-                </div>
-
-                <h3>
-                    Everyday Jeans
-                </h3>
-
-                <p>
-                    Men
-                </p>
-
-                <strong>
-                    $79.00
-                </strong>
-
-                <div class="rating">
-                    ★★★★★
-                    <span>
-                        (53)
-                    </span>
-                </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 7 -->
-
-            <article class="product-card">
-
-                <div class="product-image">
-
-                    <button class="wishlist">
-                        ♡
-                    </button>
-
-                    <img
-                        src="{% static 'images/product-7.png' %}"
-                        alt="Floral Maxi Dress"
-                    >
-
-                    <button class="quick-add">
-                        +
-                    </button>
-
-                </div>
-
-                <h3>
-                    Floral Maxi Dress
-                </h3>
-
-                <p>
-                    Women
-                </p>
-
-                <strong>
-                    $89.00
-                </strong>
-
-                <div class="rating">
-                    ★★★★★
-                    <span>
-                        (21)
-                    </span>
-                </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 8 -->
-
-            <article class="product-card">
-
-                <div class="product-image">
-
-                    <button class="wishlist">
-                        ♡
-                    </button>
-
-                    <img
-                        src="{% static 'images/product-8.png' %}"
-                        alt="Oversized Hoodie"
-                    >
-
-                    <button class="quick-add">
-                        +
-                    </button>
-
-                </div>
-
-                <h3>
-                    Oversized Hoodie
-                </h3>
-
-                <p>
-                    Men
-                </p>
-
-                <strong>
-                    $64.00
-                </strong>
-
-                <div class="rating">
-                    ★★★★★
-                    <span>
-                        (17)
-                    </span>
-                </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 9 -->
-
-            <article class="product-card">
-
-                <div class="product-image">
-
-                    <button class="wishlist">
-                        ♡
-                    </button>
-
-                    <img
-                        src="{% static 'images/product-9.png' %}"
-                        alt="Ribbed Tank Top"
-                    >
-
-                    <button class="quick-add">
-                        +
-                    </button>
-
-                </div>
-
-                <h3>
-                    Ribbed Tank Top
-                </h3>
-
-                <p>
-                    Women
-                </p>
-
-                <strong>
-                    $29.00
-                </strong>
-
-                <div class="rating">
-                    ★★★★★
-                    <span>
-                        (19)
-                    </span>
-                </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 10 -->
-
-            <article class="product-card">
-
-                <div class="product-image">
-
-                    <span class="badge">
-                        NEW
-                    </span>
-
-                    <button class="wishlist">
-                        ♡
-                    </button>
-
-                    <img
-                        src="{% static 'images/product-10.png' %}"
-                        alt="Denim Jacket"
-                    >
-
-                    <button class="quick-add">
-                        +
-                    </button>
-
-                </div>
-
-                <h3>
-                    Denim Jacket
-                </h3>
-
-                <p>
-                    Women
-                </p>
-
-                <strong>
-                    $89.00
-                </strong>
-
-                <div class="rating">
-                    ★★★★★
-                    <span>
-                        (28)
-                    </span>
-                </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 11 -->
-
-            <article class="product-card">
-
-                <div class="product-image">
-
-                    <button class="wishlist">
-                        ♡
-                    </button>
-
-                    <img
-                        src="{% static 'images/product-11.png' %}"
-                        alt="Tailored Trousers"
-                    >
-
-                    <button class="quick-add">
-                        +
-                    </button>
-
-                </div>
-
-                <h3>
-                    Tailored Trousers
-                </h3>
-
-                <p>
-                    Men
-                </p>
-
-                <strong>
-                    $79.00
-                </strong>
-
-                <div class="rating">
-                    ★★★★★
-                    <span>
-                        (22)
-                    </span>
-                </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 12 -->
-
-            <article class="product-card">
-
-                <div class="product-image">
-
-                    <button class="wishlist">
-                        ♡
-                    </button>
-
-                    <img
-                        src="{% static 'images/product-12.png' %}"
-                        alt="Knit Sweater"
-                    >
-
-                    <button class="quick-add">
-                        +
-                    </button>
-
-                </div>
-
-                <h3>
-                    Knit Sweater
-                </h3>
-
-                <p>
-                    Women
-                </p>
-
-                <strong>
-                    $59.00
-                </strong>
-
-                <div class="rating">
-                    ★★★★★
-                    <span>
-                        (35)
-                    </span>
-                </div>
-
-            </article>
 
         </div>
 
 
 
-        <!-- PAGINATION -->
+        <!-- =================================================
+             PAGINATION
+        ================================================== -->
 
         <div class="pagination">
 
@@ -1070,6 +587,7 @@
 
         </div>
 
+
     </div>
 
 </section>
@@ -1082,13 +600,21 @@
 
 <section class="footer-benefits">
 
+
     <div>
 
         <span>♧</span>
 
         <div>
-            <strong>Free Shipping</strong>
-            <small>On orders over $75</small>
+
+            <strong>
+                Free Shipping
+            </strong>
+
+            <small>
+                On orders over $75
+            </small>
+
         </div>
 
     </div>
@@ -1099,8 +625,15 @@
         <span>↻</span>
 
         <div>
-            <strong>Easy Returns</strong>
-            <small>30 day return policy</small>
+
+            <strong>
+                Easy Returns
+            </strong>
+
+            <small>
+                30 day return policy
+            </small>
+
         </div>
 
     </div>
@@ -1111,8 +644,15 @@
         <span>▣</span>
 
         <div>
-            <strong>Secure Payment</strong>
-            <small>100% secure checkout</small>
+
+            <strong>
+                Secure Payment
+            </strong>
+
+            <small>
+                100% secure checkout
+            </small>
+
         </div>
 
     </div>
@@ -1123,11 +663,19 @@
         <span>♡</span>
 
         <div>
-            <strong>24/7 Support</strong>
-            <small>We're here to help</small>
+
+            <strong>
+                24/7 Support
+            </strong>
+
+            <small>
+                We're here to help
+            </small>
+
         </div>
 
     </div>
+
 
 </section>
 

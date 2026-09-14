@@ -6,7 +6,15 @@ from .models import Product
 # Create your views here.
 def products(request):
     products=Product.objects.all()
-    return render(request,'products.html',{'products':products})
+
+    selected_category=request.GET.get('category')
+
+    if selected_category:
+        products=products.filter(category__slug=selected_category)
+
+        
+
+    return render(request,'products.html',{'products':products,'selected_category':selected_category,})
 
 def search(request):
     query=request.GET.get("q","").strip()
@@ -26,9 +34,8 @@ def search(request):
 
     return render(request,'search.html',context)
 
-def product_detail(request,pk):
-    product=get_object_or_404(Product,pk=pk)
 
-    related_products=Product.objects.exclude(pk=product.pk)[:5]
+def productsdetail(request,pk):
+    product = get_object_or_404(Product,pk=pk)
 
-    return render(request,'product_detail.html',{'product':product,'related_products':related_products,})
+    return render(request,'productsdetail.html',{'product':product,})

@@ -1,0 +1,435 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+{{ product.name }} | LUNOIR
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'css/productsdetail.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<section class="product-detail-page">
+
+    <!-- =========================
+         BREADCRUMB
+    ========================== -->
+
+    <div class="detail-breadcrumb">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <span>›</span>
+
+        <a href="{% url 'products:products' %}">
+            Products
+        </a>
+
+        <span>›</span>
+
+        <span>
+            {{ product.name }}
+        </span>
+
+    </div>
+
+
+
+    <!-- =========================
+         PRODUCT
+    ========================== -->
+
+    <div class="product-detail-container">
+
+
+        <!-- LEFT : IMAGE -->
+
+        <div class="detail-image-section">
+
+            {% if product.image %}
+
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="detail-main-image">
+
+            {% else %}
+
+            <div class="no-image">
+                No Image Available
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- RIGHT : INFORMATION -->
+
+        <div class="detail-info">
+
+
+            <!-- CATEGORY -->
+
+            <p class="detail-category">
+                {{ product.category.name }}
+            </p>
+
+
+            <!-- NAME -->
+
+            <h1>
+                {{ product.name }}
+            </h1>
+
+
+            <!-- RATING -->
+
+            <div class="detail-rating">
+
+                <span>
+                    ★★★★★
+                </span>
+
+                <a href="#reviews">
+                    (48 reviews)
+                </a>
+
+            </div>
+
+
+            <!-- PRICE -->
+
+            <div class="detail-price">
+                ${{ product.price }}
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <p class="detail-description">
+
+                {{ product.description }}
+
+            </p>
+
+
+            <div class="detail-line"></div>
+
+
+            <!-- STOCK -->
+
+            <div class="detail-stock">
+
+                <strong>
+                    AVAILABILITY:
+                </strong>
+
+                {% if product.stock > 0 %}
+
+                <span class="in-stock">
+                    In Stock
+                </span>
+
+                {% else %}
+
+                <span class="out-stock">
+                    Out of Stock
+                </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- SIZE -->
+
+            <div class="detail-option">
+
+                <h4>
+                    SIZE:
+                </h4>
+
+                <div class="size-options">
+
+                    <button>XS</button>
+                    <button>S</button>
+                    <button class="selected">M</button>
+                    <button>L</button>
+                    <button>XL</button>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUANTITY -->
+
+            <div class="detail-option">
+
+                <h4>
+                    QUANTITY:
+                </h4>
+
+                <div class="quantity-box">
+
+                    <button>
+                        −
+                    </button>
+
+                    <span>
+                        1
+                    </span>
+
+                    <button>
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ADD TO CART -->
+
+            <a href="{% url 'cart:add_to_cart' product.id %}"class="add-to-cart-btn">
+                ADD TO CART
+            </a>    
+         
+
+
+
+            <!-- SECONDARY BUTTONS -->
+
+            <div class="detail-buttons">
+
+                <a href="{% url 'wishlist' %}" class="wishlist-button">
+                    ♡ ADD TO WISHLIST
+                </a>
+
+
+                <button class="try-button">
+                    ✧ TRY VIRTUAL
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         BENEFITS
+    ========================== -->
+
+    <section class="product-benefits">
+
+        <div>
+            <span>🚚</span>
+
+            <div>
+                <strong>Free Shipping</strong>
+                <small>On orders over $75</small>
+            </div>
+        </div>
+
+
+        <div>
+            <span>↻</span>
+
+            <div>
+                <strong>Easy Returns</strong>
+                <small>30 day return policy</small>
+            </div>
+        </div>
+
+
+        <div>
+            <span>▣</span>
+
+            <div>
+                <strong>Secure Payment</strong>
+                <small>100% secure checkout</small>
+            </div>
+        </div>
+
+
+        <div>
+            <span>✧</span>
+
+            <div>
+                <strong>AI Size Guide</strong>
+                <small>Find your perfect fit</small>
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         DESCRIPTION
+    ========================== -->
+
+    <section class="product-description-section">
+
+        <div class="description-tabs">
+
+            <button class="active">
+                DESCRIPTION
+            </button>
+
+            <button>
+                DETAILS
+            </button>
+
+            <button>
+                SIZE & FIT
+            </button>
+
+            <button>
+                SHIPPING & RETURNS
+            </button>
+
+            <button>
+                REVIEWS (48)
+            </button>
+
+        </div>
+
+
+        <div class="description-content">
+
+            <div>
+
+                <h3>
+                    About this product
+                </h3>
+
+                <p>
+                    {{ product.description }}
+                </p>
+
+                <ul>
+                    <li>Premium quality fabric</li>
+                    <li>Elegant modern design</li>
+                    <li>Comfortable fit</li>
+                    <li>Perfect for special occasions</li>
+                </ul>
+
+            </div>
+
+
+            <div class="product-meta">
+
+                <p>
+                    <strong>Category:</strong>
+                    {{ product.category.name }}
+                </p>
+
+                <p>
+                    <strong>Stock:</strong>
+                    {{ product.stock }}
+                </p>
+
+                <p>
+                    <strong>Availability:</strong>
+
+                    {% if product.stock > 0 %}
+                    In Stock
+                    {% else %}
+                    Out of Stock
+                    {% endif %}
+
+                </p>
+
+                <p>
+                    <strong>Product ID:</strong>
+                    LNR-{{ product.id }}
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         RELATED PRODUCTS
+    ========================== -->
+
+    {% if related_products %}
+
+    <section class="related-products">
+
+        <div class="related-header">
+
+            <div>
+                <p>
+                    YOU MAY ALSO LIKE
+                </p>
+
+                <h2>
+                    Complete Your Look
+                </h2>
+            </div>
+
+            <a href="{% url 'products:products' %}">
+                VIEW ALL →
+            </a>
+
+        </div>
+
+
+        <div class="related-grid">
+
+            {% for related in related_products %}
+
+            <article class="related-card">
+
+                <a href="{% url 'products:products_detail' related.pk %}">
+
+                    {% if related.image %}
+
+                    <img src="{{ related.image.url }}" alt="{{ related.name }}">
+
+                    {% endif %}
+
+                </a>
+
+                <h3>
+                    {{ related.name }}
+                </h3>
+
+                <p>
+                    {{ related.category.name }}
+                </p>
+
+                <strong>
+                    ${{ related.price }}
+                </strong>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
