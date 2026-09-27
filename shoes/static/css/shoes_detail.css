@@ -1,0 +1,924 @@
+/* =========================================================
+   LUNOIR SHOE DETAIL PAGE
+   Mint Luxury Theme
+========================================================= */
+
+:root {
+    --mint-dark: #376f68;
+    --mint: #8fbeb0;
+    --mint-light: #eaf5ef;
+    --mint-soft: #f3faf6;
+    --cream: #fbfcf8;
+    --text: #173b39;
+    --muted: #6c8580;
+    --border: #d8e8e1;
+    --white: #ffffff;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.shoe-detail-page {
+    width: 100%;
+    background: var(--white);
+    padding: 55px 0 0;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.shoe-detail-container {
+    width: min(1400px, 92%);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 620px 1fr;
+
+    gap: 85px;
+
+    align-items: start;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   LEFT IMAGE
+========================================================= */
+
+.shoe-detail-gallery {
+    width: 100%;
+}
+
+/* IMAGE BOX */
+
+.shoe-detail-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    display: block;
+    background: linear-gradient(
+        135deg,
+        #edf8f2,
+        #dcefe7
+    );
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+/* ACTUAL IMAGE */
+
+.shoe-detail-image img {
+    width: 90%;
+    height: 90%;
+
+    object-fit: contain;
+    object-position: center;
+
+    display: block;
+
+    transition: transform .4s ease;
+}
+
+.shoe-detail-image:hover img {
+    transform: scale(1.02);
+}
+
+/* NO IMAGE */
+
+.no-shoe-image {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--muted);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   RIGHT INFORMATION
+========================================================= */
+
+.shoe-detail-info {
+    position: relative;
+
+    padding: 10px 0 0;
+}
+
+
+/* CATEGORY */
+
+.shoe-detail-category {
+    margin: 0 0 12px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    color: var(--mint-dark);
+}
+
+
+/* NAME */
+
+.shoe-detail-info h1 {
+    margin: 0 0 18px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 46px;
+
+    line-height: 1.1;
+
+    font-weight: 400;
+
+    color: #123a38;
+}
+
+
+/* =========================================================
+   RATING
+========================================================= */
+
+.shoe-detail-rating {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 22px;
+
+    font-size: 12px;
+}
+
+.shoe-detail-rating .stars {
+    color: #31836e;
+
+    letter-spacing: 2px;
+
+    font-size: 13px;
+}
+
+.rating-number {
+    color: var(--text);
+
+    font-weight: 600;
+}
+
+.reviews {
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.shoe-detail-price {
+    margin-bottom: 28px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid var(--border);
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    color: #173e3a;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.shoe-description {
+    margin-bottom: 24px;
+}
+
+.shoe-description h3 {
+    margin: 0 0 10px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    color: var(--text);
+}
+
+.shoe-description p {
+    margin: 0;
+
+    max-width: 600px;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    color: #6b8580;
+}
+
+
+/* =========================================================
+   STOCK
+========================================================= */
+
+.shoe-stock {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin: 22px 0 28px;
+
+    font-size: 12px;
+
+    color: var(--muted);
+}
+
+.shoe-stock strong {
+    color: var(--text);
+
+    font-size: 12px;
+}
+
+.stock-dot {
+    width: 8px;
+    height: 8px;
+
+    flex: 0 0 8px;
+
+    border-radius: 50%;
+
+    background: #4b9b78;
+
+    box-shadow: 0 0 0 4px #e5f3eb;
+}
+
+.out-stock-dot {
+    width: 8px;
+    height: 8px;
+
+    flex: 0 0 8px;
+
+    border-radius: 50%;
+
+    background: #c85d5d;
+
+    box-shadow: 0 0 0 4px #f8e8e8;
+}
+
+
+/* =========================================================
+   SIZE
+========================================================= */
+
+.shoe-size-section {
+    margin-bottom: 28px;
+}
+
+.size-heading {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+}
+
+.size-heading h3 {
+    margin: 0;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: var(--text);
+}
+
+.size-heading a {
+    font-size: 11px;
+
+    color: var(--mint-dark);
+
+    text-decoration: underline;
+}
+
+.shoe-sizes {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+.shoe-sizes button {
+    width: 48px;
+    height: 38px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+
+    background: white;
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.shoe-sizes button:hover,
+.shoe-sizes button.selected {
+    background: var(--mint-dark);
+
+    border-color: var(--mint-dark);
+
+    color: white;
+}
+
+
+/* =========================================================
+   QUANTITY
+========================================================= */
+
+.quantity-section {
+    margin-bottom: 28px;
+}
+
+.quantity-section h3 {
+    margin: 0 0 10px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: var(--text);
+}
+
+.quantity-box {
+    width: 102px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    background: white;
+}
+
+.quantity-box button {
+    width: 32px;
+    height: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--mint-dark);
+
+    font-size: 17px;
+
+    cursor: pointer;
+}
+
+.quantity-box button:hover {
+    background: var(--mint-light);
+}
+
+.quantity-box span {
+    font-size: 12px;
+
+    color: var(--text);
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.shoe-actions {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    width: 100%;
+
+    margin-top: 5px;
+}
+
+
+/* ADD TO CART */
+
+.shoe-add-cart {
+    width: 100%;
+
+    min-height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: var(--mint-dark);
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+.shoe-add-cart:hover {
+    background: #285b55;
+
+    transform: translateY(-1px);
+}
+
+
+/* DISABLED */
+
+.shoe-add-cart.disabled {
+    background: #9dbbb4;
+
+    color: white;
+
+    cursor: not-allowed;
+
+    opacity: .8;
+}
+
+
+/* =========================================================
+   SECONDARY BUTTONS
+========================================================= */
+
+.detail-buttons {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+.wishlist-button,
+.try-button {
+    min-height: 44px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    background: white;
+
+    color: var(--mint-dark);
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+.wishlist-button:hover,
+.try-button:hover {
+    background: var(--mint-light);
+
+    border-color: var(--mint);
+
+    color: var(--mint-dark);
+}
+
+
+/* =========================================================
+   MAIN WISHLIST HEART
+========================================================= */
+
+.shoe-wishlist-button {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: var(--mint-dark);
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+.shoe-wishlist-button:hover {
+    background: var(--mint-dark);
+
+    color: white;
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   BENEFITS
+========================================================= */
+
+.shoe-detail-benefits {
+    width: min(1180px, 92%);
+
+    margin: 55px auto 0;
+
+    padding: 25px 0;
+
+    border-top: 1px solid var(--border);
+
+    border-bottom: 1px solid var(--border);
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.detail-benefit {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    border-right: 1px solid var(--border);
+}
+
+.detail-benefit:last-child {
+    border-right: none;
+}
+
+.benefit-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--mint-light);
+
+    color: var(--mint-dark);
+
+    font-size: 17px;
+}
+
+.detail-benefit strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 10px;
+
+    letter-spacing: 1.2px;
+
+    color: var(--text);
+}
+
+.detail-benefit p {
+    margin: 0;
+
+    font-size: 10px;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   RELATED SHOES
+========================================================= */
+
+.related-shoes {
+    width: min(1180px, 92%);
+
+    margin: 70px auto;
+
+    padding-bottom: 40px;
+}
+
+.related-header {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.related-header span {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    font-weight: 700;
+
+    color: var(--mint-dark);
+}
+
+.related-header h2 {
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 34px;
+
+    font-weight: 400;
+
+    color: var(--text);
+}
+
+
+/* RELATED GRID */
+
+.related-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.related-card {
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: white;
+
+    transition: .25s ease;
+}
+
+.related-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 12px 28px rgba(40,90,80,.1);
+}
+
+.related-image {
+    display: block;
+
+    height: 230px;
+
+    background: var(--mint-soft);
+
+    overflow: hidden;
+}
+
+.related-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 12px;
+
+    transition: transform .3s ease;
+}
+
+.related-card:hover .related-image img {
+    transform: scale(1.04);
+}
+
+.related-info {
+    padding: 13px;
+}
+
+.related-info h3 {
+    margin: 0 0 6px;
+
+    font-size: 13px;
+
+    color: var(--text);
+}
+
+.related-info p {
+    margin: 0;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: var(--mint-dark);
+}
+
+.no-related {
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .shoe-detail-container {
+        grid-template-columns: 430px 1fr;
+
+        gap: 45px;
+    }
+
+    .shoe-detail-image {
+        height: 1000px;
+    }
+
+    .shoe-detail-info h1 {
+        font-size: 56px;
+    }
+
+    .related-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .shoe-detail-page {
+        padding-top: 30px;
+    }
+
+    .shoe-detail-container {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+    }
+
+    .shoe-detail-image {
+        height: 1000px;
+    }
+
+    .shoe-detail-info h1 {
+        font-size: 38px;
+    }
+
+    .shoe-wishlist-button {
+        top: 0;
+        right: 0;
+    }
+
+    .shoe-detail-benefits {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .detail-benefit {
+        justify-content: flex-start;
+
+        border-right: none;
+
+        border-bottom: 1px solid var(--border);
+
+        padding-bottom: 18px;
+    }
+
+    .detail-benefit:last-child {
+        border-bottom: none;
+
+        padding-bottom: 0;
+    }
+
+    .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .shoe-detail-container,
+    .shoe-detail-benefits,
+    .related-shoes {
+        width: 92%;
+    }
+
+    .shoe-detail-image {
+        height: 1000px;
+    }
+
+    .shoe-detail-info h1 {
+        font-size: 32px;
+    }
+
+    .detail-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .related-image {
+        height: 260px;
+    }
+}

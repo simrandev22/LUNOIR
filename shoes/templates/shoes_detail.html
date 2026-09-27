@@ -1,0 +1,560 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block title %}
+{{ shoes.name }} | LUNOIR
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'css/shoes_detail.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<section class="shoe-detail-page">
+
+    <!-- =====================================================
+         BREADCRUMB
+    ====================================================== -->
+
+    <div class="shoe-detail-breadcrumb">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <span>›</span>
+
+        <a href="{% url 'shoes:shoes' %}">
+            Shoes
+        </a>
+
+        <span>›</span>
+
+        <span>
+            {{ shoe.name }}
+        </span>
+
+    </div>
+
+
+    <!-- =====================================================
+         MAIN SHOE DETAIL
+    ====================================================== -->
+
+    <div class="shoe-detail-container">
+
+
+        <!-- =================================================
+             LEFT - IMAGE
+        ================================================== -->
+
+        <div class="shoe-detail-gallery">
+
+            <div class="shoe-detail-image">
+
+                {% if shoe.image %}
+
+                <img src="{{ shoe.image.url }}" alt="{{ shoe.name }}">
+
+                {% else %}
+
+                <div class="no-shoe-image">
+                    No Image Available
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- IMAGE THUMBNAIL AREA -->
+
+            <div class="shoe-image-label">
+
+                <span>
+                    LUNOIR
+                </span>
+
+                <small>
+                    {{ shoe.get_category_display }}
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             RIGHT - SHOE INFORMATION
+        ================================================== -->
+
+        <div class="shoe-detail-info">
+
+
+            <!-- CATEGORY -->
+
+            <p class="shoe-detail-category">
+
+                {{ shoe.get_category_display }}
+
+            </p>
+
+
+            <!-- NAME -->
+
+            <h1>
+
+                {{ shoe.name }}
+
+            </h1>
+
+
+            <!-- RATING -->
+
+            <div class="shoe-detail-rating">
+
+                <span class="stars">
+                    ★★★★★
+                </span>
+
+                <span class="rating-number">
+                    5.0
+                </span>
+
+                <span class="reviews">
+                    (0 Reviews)
+                </span>
+
+            </div>
+
+
+            <!-- PRICE -->
+
+            <div class="shoe-detail-price">
+
+                ${{ shoe.price }}
+
+            </div>
+
+
+            <!-- LINE -->
+
+            <div class="detail-line"></div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="shoe-description">
+
+                <h3>
+                    About this shoe
+                </h3>
+
+                {% if shoe.description %}
+
+                <p>
+                    {{ shoe.description }}
+                </p>
+
+                {% else %}
+
+                <p>
+                    Discover timeless style and
+                    comfortable design with this
+                    LUNOIR shoe.
+                </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- =================================================
+                 STOCK
+            ================================================== -->
+
+            <div class="shoe-stock">
+
+                {% if shoe.stock > 0 %}
+
+                <span class="stock-dot"></span>
+
+                <strong>
+                    In Stock
+                </strong>
+
+                <span>
+                    {{ shoe.stock }} available
+                </span>
+
+                {% else %}
+
+                <span class="add to stock"></span>
+
+                <strong>
+                    AVAILABILITY:
+                    In Stock
+                </strong>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- =================================================
+                 SIZE
+            ================================================== -->
+
+            <div class="shoe-size-section">
+
+                <div class="size-heading">
+
+                    <h3>
+                        Select Size
+                    </h3>
+
+                    <a href="#">
+                        Size Guide
+                    </a>
+
+                </div>
+
+
+                <div class="shoe-sizes">
+
+                    <button type="button">
+                        35
+                    </button>
+
+                    <button type="button">
+                        36
+                    </button>
+
+                    <button type="button">
+                        37
+                    </button>
+
+                    <button type="button">
+                        38
+                    </button>
+
+                    <button type="button">
+                        39
+                    </button>
+
+                    <button type="button">
+                        40
+                    </button>
+
+                    <button type="button">
+                        41
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 QUANTITY
+            ================================================== -->
+
+            <div class="quantity-section">
+
+                <h3>
+                    Quantity
+                </h3>
+
+                <div class="quantity-box">
+
+                    <button type="button">
+                        −
+                    </button>
+
+                    <span>
+                        1
+                    </span>
+
+                    <button type="button">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ACTION BUTTONS
+            ================================================== -->
+
+
+
+            <div class="shoe-actions">
+
+                <form method="POST" action="{% url 'cart:add_shoe_to_cart' shoe.id %}" class="shoe-cart-form">
+                    {% csrf_token %}
+
+                    <button type="submit" class="shoe-add-cart">
+                        🛍 ADD TO CART
+                    </button>
+                </form>
+
+                <div class="detail-buttons">
+
+                    <a href="#" class="wishlist-button">
+                        ♡ ADD TO WISHLIST
+                    </a>
+
+                    <button type="button" class="try-button">
+                        ✧ TRY VIRTUAL
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- HEART -->
+
+            <button type="button" class="shoe-wishlist-button" title="Add to Wishlist">
+                ♡
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         BENEFITS
+    ====================================================== -->
+
+    <div class="shoe-detail-benefits">
+
+
+        <div class="detail-benefit">
+
+            <span class="benefit-icon">
+                ♧
+            </span>
+
+            <div>
+
+                <strong>
+                    FREE SHIPPING
+                </strong>
+
+                <p>
+                    On orders over $75
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="detail-benefit">
+
+            <span class="benefit-icon">
+                ↻
+            </span>
+
+            <div>
+
+                <strong>
+                    EASY RETURNS
+                </strong>
+
+                <p>
+                    Simple and convenient
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="detail-benefit">
+
+            <span class="benefit-icon">
+                ♢
+            </span>
+
+            <div>
+
+                <strong>
+                    SECURE PAYMENT
+                </strong>
+
+                <p>
+                    Safe & secure checkout
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="detail-benefit">
+
+            <span class="benefit-icon">
+                ✧
+            </span>
+
+            <div>
+
+                <strong>
+                    SECURE CHECKOUT
+                </strong>
+
+                <p>
+                    Safe & secure payment
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     RELATED SHOES
+========================================================= -->
+
+<section class="related-shoes">
+
+
+    <div class="related-header">
+
+        <span>
+            YOU MAY ALSO LIKE
+        </span>
+
+        <h2>
+            Complete Your Look
+        </h2>
+
+        <p>
+            Explore more shoes from the LUNOIR collection.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         ALL RELATED SHOES
+    ====================================================== -->
+
+    <div class="related-grid">
+
+
+        {% for related in related_shoes %}
+
+
+        <article class="related-card">
+
+
+            <!-- IMAGE -->
+
+            <a href="{% url 'shoes:shoes_detail' related.pk %}" class="related-image">
+
+                {% if related.image %}
+
+                <img src="{{ related.image.url }}" alt="{{ related.name }}">
+
+                {% else %}
+
+                <div class="no-shoes-image">
+                    No Image
+                </div>
+
+                {% endif %}
+
+            </a>
+
+
+            <!-- INFO -->
+
+            <div class="related-info">
+
+
+                <span class="related-category">
+
+                    {{ related.get_category_display }}
+
+                </span>
+
+
+                <h3>
+
+                    {{ related.name }}
+
+                </h3>
+
+
+                <p class="related-price">
+
+                    ${{ related.price }}
+
+                </p>
+
+
+                {% if related.stock > 0 %}
+
+                <small class="related-stock">
+                    In Stock
+                </small>
+
+                {% else %}
+
+                <small class="related-out-stock">
+                    Out of Stock
+                </small>
+
+                {% endif %}
+
+
+                <!-- VIEW DETAIL -->
+
+                <a href="{% url 'shoes:shoes_detail' related.pk %}" class="related-view">
+                    VIEW DETAILS →
+                </a>
+
+            </div>
+
+
+        </article>
+
+
+        {% empty %}
+
+
+        <div class="no-related">
+
+            <p>
+                No other shoes available yet.
+            </p>
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

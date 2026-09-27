@@ -1,280 +1,526 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
 {% load static %}
 
 {% block title %}
 LUNOIR | Your Cart
 {% endblock %}
 
-{% block content %}
+{% block extra_css %}
 
 <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
 
-<!-- =====================================================
-     CART PAGE
-===================================================== -->
+{% block content %}
 
 <section class="cart-page">
 
-    <!-- Decorative background -->
-    <div class="cart-glow cart-glow-one"></div>
-    <div class="cart-glow cart-glow-two"></div>
 
-    <div class="cart-container">
+<div class="cart-container">
 
-        <!-- BREADCRUMB -->
-        <div class="cart-breadcrumb">
-            <a href="/">Home</a>
-            <span>›</span>
-            <span>Your Cart</span>
-        </div>
+    <!-- =====================================
+         BREADCRUMB
+    ====================================== -->
 
+    <div class="cart-breadcrumb">
 
-        <!-- PAGE HEADING -->
-        <div class="cart-heading">
+        <a href="{% url 'home' %}">
+            Home
+        </a>
 
-            <div class="heading-sparkle">✦</div>
+        <span>/</span>
 
-            <h1>
-                Your <em>Cart</em>
-            </h1>
+        <span>
+            Your Cart
+        </span>
 
-            <div class="heading-line">
-                <span></span>
-                <i>✦</i>
-                <span></span>
-            </div>
-
-            <p>
-                Review your items and proceed to secure checkout.
-            </p>
-
-        </div>
+    </div>
 
 
-        <!-- MAIN CART LAYOUT -->
-        <div class="cart-layout">
+    <!-- =====================================
+         PAGE HEADER
+    ====================================== -->
+
+    <div class="cart-header">
+
+        <p class="cart-eyebrow">
+            YOUR LUNOIR SELECTION
+        </p>
+
+        <h1>
+            Your <span>Cart</span>
+        </h1>
+
+        <p>
+            Review your items and proceed to secure checkout.
+        </p>
+
+    </div>
 
 
-            <!-- =================================================
-                 LEFT SIDE
-            ================================================== -->
+    <!-- =====================================
+         MAIN CART LAYOUT
+    ====================================== -->
 
-            <div class="cart-left">
+    <div class="cart-layout">
 
-                {% if cart_items %}
 
-                <!-- =================================================
+        <!-- =================================
+             LEFT SIDE
+        ================================== -->
+
+        <div class="cart-left">
+
+            {% if cart_items %}
+
+                <!-- =============================
                      CART ITEMS
-                ================================================== -->
+                ============================== -->
 
                 <div class="cart-items">
 
                     {% for item in cart_items %}
 
-                    <div class="cart-item">
-
-                        <!-- PRODUCT IMAGE -->
-                        <div class="cart-item-image">
-
-                            {% if item.product.image %}
-                                <img
-                                    src="{{ item.product.image.url }}"
-                                    alt="{{ item.product.name }}"
-                                >
-                            {% else %}
-                                <div class="no-image">
-                                    LUNOIR
-                                </div>
-                            {% endif %}
-
-                        </div>
+                        <article class="cart-item">
 
 
-                        <!-- PRODUCT INFORMATION -->
-                        <div class="cart-item-info">
+                            <!-- PRODUCT IMAGE -->
 
-                            <h3>
-                                {{ item.product.name }}
-                            </h3>
+                            <div class="cart-item-image">
 
-                            {% if item.product.category %}
-                                <p>
+                                {% if item.product.image %}
+
+                                    <img
+                                        src="{{ item.product.image.url }}"
+                                        alt="{{ item.product.name }}"
+                                    >
+
+                                {% else %}
+
+                                    <div class="cart-no-image">
+                                        LUNOIR
+                                    </div>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <!-- PRODUCT DETAILS -->
+
+                            <div class="cart-item-details">
+
+                                <p class="cart-item-category">
                                     {{ item.product.category.name }}
                                 </p>
-                            {% endif %}
 
-                            <span>
-                                Quantity: {{ item.quantity }}
-                            </span>
+                                <h2>
+                                    {{ item.product.name }}
+                                </h2>
 
-                        </div>
+                                <p class="cart-item-unit-price">
+                                    ${{ item.product.price }}
+                                </p>
 
 
-                        <!-- PRODUCT PRICE -->
-                        <div class="cart-item-price">
+                                <!-- QUANTITY -->
 
-                            <strong>
-                                ${{ item.subtotal }}
-                            </strong>
+                                <div class="cart-quantity">
 
-                        </div>
+                                    <span class="quantity-label">
+                                        Quantity
+                                    </span>
 
-                    </div>
+                                    <div class="quantity-box">
+
+                                        <a
+                                            href="{% url 'cart:decrease_quantity' item.product.id %}"
+                                            class="quantity-button"
+                                        >
+                                            −
+                                        </a>
+
+                                        <span class="quantity-number">
+                                            {{ item.quantity }}
+                                        </span>
+
+                                        <a
+                                            href="{% url 'cart:increase_quantity' item.product.id %}"
+                                            class="quantity-button"
+                                        >
+                                            +
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- REMOVE -->
+
+                                <a
+                                    href="{% url 'cart:remove_from_cart' item.product.id %}"
+                                    class="cart-remove"
+                                >
+                                    Remove
+                                </a>
+
+                            </div>
+
+
+                            <!-- ITEM TOTAL -->
+
+                            <div class="cart-item-total">
+
+                                <span>
+                                    Item Total
+                                </span>
+
+                                <strong>
+                                    ${{ item.total }}
+                                </strong>
+
+                            </div>
+
+
+                        </article>
 
                     {% endfor %}
 
                 </div>
 
 
-                {% else %}
+                <!-- =============================
+                     CONTINUE SHOPPING
+                ============================== -->
 
-                <!-- =================================================
+                <div class="continue-shopping">
+
+                    <a href="{% url 'products:products' %}">
+                        ← Continue Shopping
+                    </a>
+
+                </div>
+
+
+            {% else %}
+
+
+                <!-- =================================
                      EMPTY CART
-                ================================================== -->
+                ================================== -->
 
                 <div class="empty-cart-card">
 
-                    <!-- SHOPPING BAG -->
-                    <div class="bag-illustration">
+                    <div class="empty-decoration decoration-left">
+                        ❋
+                    </div>
 
-                        <div class="bag-circle"></div>
-
-                        <div class="shopping-bag">
-
-                            <div class="bag-handle"></div>
-
-                            <div class="bag-body">
-                                <span>LUNOIR</span>
-                            </div>
-
-                            <div class="bag-heart">
-                                ♡
-                            </div>
-
-                        </div>
-
-                        <div class="bag-leaf leaf-left">
-                            ❧
-                        </div>
-
-                        <div class="bag-leaf leaf-right">
-                            ❧
-                        </div>
-
+                    <div class="empty-decoration decoration-right">
+                        ✦
                     </div>
 
 
-                    <div class="empty-label">
-                        YOUR SHOPPING BAG IS WAITING
+                    <div class="empty-cart-icon">
+                        ♡
                     </div>
 
 
                     <h2>
-                        Your cart is
-                        <em>empty.</em>
+                        Your cart is empty
                     </h2>
 
 
-                    <div class="empty-divider">
-                        <span></span>
-                        ✦
-                        <span></span>
-                    </div>
-
-
-                    <p class="empty-description">
-                        Looks like you haven't added anything to your cart yet.
-                        <br>
-                        Explore our collections and find something you'll love.
+                    <p>
+                        Looks like you haven't added anything yet.
+                        Discover something beautiful from LUNOIR.
                     </p>
 
 
                     <a
                         href="{% url 'products:products' %}"
-                        class="continue-shopping"
+                        class="empty-cart-button"
                     >
-
-                        <span>
-                            CONTINUE SHOPPING
-                        </span>
-
-                        <strong>
-                            →
-                        </strong>
-
+                        EXPLORE COLLECTION
                     </a>
 
                 </div>
 
-                {% endif %}
 
+                <!-- =================================
+                     EMPTY CART BENEFITS
+                ================================== -->
 
-                <!-- =================================================
-                     BENEFITS
-                ================================================== -->
-
-                <div class="benefits-card">
+                <div class="cart-benefits">
 
                     <div class="benefit">
 
-                        <div class="benefit-icon">
-                            ♧
-                        </div>
+                        <span>
+                            ✦
+                        </span>
 
                         <div>
-                            <strong>FREE SHIPPING</strong>
-                            <p>On orders over $75</p>
+
+                            <strong>
+                                Curated Fashion
+                            </strong>
+
+                            <p>
+                                Discover pieces selected for your style.
+                            </p>
+
                         </div>
 
                     </div>
 
 
-                    <div class="benefit-divider"></div>
-
-
                     <div class="benefit">
 
-                        <div class="benefit-icon">
+                        <span>
                             ♢
-                        </div>
+                        </span>
 
                         <div>
-                            <strong>SECURE PAYMENT</strong>
-                            <p>100% protected checkout</p>
+
+                            <strong>
+                                Secure Checkout
+                            </strong>
+
+                            <p>
+                                Your shopping experience stays protected.
+                            </p>
+
                         </div>
 
                     </div>
 
 
-                    <div class="benefit-divider"></div>
-
-
                     <div class="benefit">
 
-                        <div class="benefit-icon">
-                            ↻
-                        </div>
+                        <span>
+                            ✧
+                        </span>
 
                         <div>
-                            <strong>EASY RETURNS</strong>
-                            <p>30-day return policy</p>
+
+                            <strong>
+                                Easy Returns
+                            </strong>
+
+                            <p>
+                                Shop confidently with flexible returns.
+                            </p>
+
                         </div>
 
                     </div>
 
+                </div>
 
-                    <div class="benefit-divider"></div>
+            {% endif %}
+
+        </div>
 
 
-                    <div class="benefit">
+        <!-- =================================
+             RIGHT SIDE — ORDER SUMMARY
+        ================================== -->
 
-                        <div class="benefit-icon">
-                            ♧
-                        </div>
+        <aside class="cart-sidebar">
 
-                        <div>
-                            <strong>SUPPORT 24/7</strong>
-                            <p>We're here to help</p>
+
+            <!-- ORDER SUMMARY -->
+
+            <div class="order-summary">
+
+                <div class="summary-heading">
+
+                    <span>✦</span>
+
+                    <h2>
+                        Order Summary
+                    </h2>
+
+                    <span>✦</span>
+
+                </div>
+
+
+                <!-- SUBTOTAL -->
+
+                <div class="summary-row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <strong>
+                        ${{ cart_total }}
+                    </strong>
+
+                </div>
+
+
+                <!-- SHIPPING -->
+
+                <div class="summary-row">
+
+                    <div>
+
+                        <span>
+                            Shipping
+                        </span>
+
+                        {% if cart_total < 75 %}
+
+                            <small>
+                                Calculated at checkout
+                            </small>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <strong>
+                        Calculated at checkout
+                    </strong>
+
+                </div>
+
+
+                <!-- DISCOUNT -->
+
+                <div class="summary-row">
+
+                    <div>
+
+                        <span>
+                            Discount
+                        </span>
+
+                        <small>
+                            Add a coupon at checkout
+                        </small>
+
+                    </div>
+
+                    <strong>
+                        —
+                    </strong>
+
+                </div>
+
+
+                <!-- TOTAL -->
+
+                <div class="summary-total">
+
+                    <div>
+
+                        <span>
+                            Estimated Total
+                        </span>
+
+                        <small>
+                            Taxes included where applicable
+                        </small>
+
+                    </div>
+
+                    <strong>
+                        ${{ cart_total }}
+                    </strong>
+
+                </div>
+
+
+                <!-- CHECKOUT -->
+
+                <button
+                    type="button"
+                    class="checkout-button"
+                    {% if not cart_items %}disabled{% endif %}
+                >
+                    ✦ PROCEED TO CHECKOUT
+                </button>
+
+
+                <!-- PAYMENT -->
+
+                <div class="payment-methods">
+
+                    <p>
+                        WE ACCEPT
+                    </p>
+
+                    <div class="payment-icons">
+
+                        <span>
+                            ESEWA
+                        </span>
+
+                        <span>
+                            GLOBAL SMART PLUS
+                        </span>
+
+                        <span>
+                            CASH ON DELIVERY
+                        </span>
+
+                        <span>
+                            KHALTI
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 FREE SHIPPING
+            ================================== -->
+
+            <div class="free-shipping-card">
+
+                <div class="shipping-icon">
+                    ✦
+                </div>
+
+
+                <div class="shipping-content">
+
+                    {% if cart_total >= 75 %}
+
+                        <strong>
+                            You've unlocked FREE SHIPPING!
+                        </strong>
+
+                        <p>
+                            Your order qualifies for complimentary shipping.
+                        </p>
+
+                    {% else %}
+
+                        <strong>
+                            Free shipping on orders over $75
+                        </strong>
+
+                        <p>
+                            Add more items to unlock complimentary shipping.
+                        </p>
+
+                    {% endif %}
+
+
+                    <div class="shipping-progress">
+
+                        <div
+                            class="shipping-progress-bar"
+                            style="width: {% if cart_total >= 75 %}100{% else %}{% widthratio cart_total 75 100 %}{% endif %}%"
+                        >
                         </div>
 
                     </div>
@@ -284,219 +530,14 @@ LUNOIR | Your Cart
             </div>
 
 
-            <!-- =================================================
-                 RIGHT SIDE
-            ================================================== -->
+        </aside>
 
-            <aside class="cart-sidebar">
-
-
-                <!-- =================================================
-                     ORDER SUMMARY
-                ================================================== -->
-
-                <div class="summary-card">
-
-                    <div class="summary-title">
-
-                        <span>✦</span>
-
-                        <h3>
-                            ORDER SUMMARY
-                        </h3>
-
-                        <span>✦</span>
-
-                    </div>
-
-
-                    <!-- SUBTOTAL -->
-                    <div class="summary-row">
-
-                        <span>
-                            Subtotal
-                        </span>
-
-                        <strong>
-                            $0.00
-                        </strong>
-
-                    </div>
-
-
-                    <!-- SHIPPING -->
-                    <div class="summary-row">
-
-                        <div>
-
-                            <span>
-                                Shipping
-                            </span>
-
-                            <small>
-                                Calculated at checkout
-                            </small>
-
-                        </div>
-
-                        <strong>
-                            —
-                        </strong>
-
-                    </div>
-
-
-                    <!-- DISCOUNT -->
-                    <div class="summary-row">
-
-                        <div>
-
-                            <span>
-                                Discount
-                            </span>
-
-                            <small>
-                                Add a promo code at checkout
-                            </small>
-
-                        </div>
-
-                        <strong>
-                            —
-                        </strong>
-
-                    </div>
-
-
-                    <!-- TOTAL -->
-                    <div class="total-box">
-
-                        <div>
-
-                            <strong>
-                                Estimated Total
-                            </strong>
-
-                            <small>
-                                Taxes included
-                            </small>
-
-                        </div>
-
-                        <span>
-                            $0.00
-                        </span>
-
-                    </div>
-
-
-                    <!-- CHECKOUT -->
-                    <button
-                        class="checkout-button"
-                        disabled
-                    >
-
-                        <span>♧</span>
-
-                        PROCEED TO CHECKOUT
-
-                    </button>
-
-
-                    <!-- PAYMENT -->
-                    <div class="payment-divider">
-
-                        <span></span>
-
-                        <p>
-                            WE ACCEPT
-                        </p>
-
-                        <span></span>
-
-                    </div>
-
-
-                    <div class="payment-methods">
-
-                        <span class="visa">
-                            VISA
-                        </span>
-
-                        <span class="mastercard">
-                            ●●
-                        </span>
-
-                        <span class="card-icon">
-                            ▣
-                        </span>
-
-                        <span class="paypal">
-                            PayPal
-                        </span>
-
-                        <span class="applepay">
-                            Pay
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <!-- =================================================
-                     FREE SHIPPING
-                ================================================== -->
-
-                <div class="shipping-card">
-
-                    <div class="shipping-icon">
-                        ♧
-                    </div>
-
-                    <div class="shipping-content">
-
-                        <p>
-                            Add $75.00 more to get
-                        </p>
-
-                        <strong>
-                            FREE SHIPPING!
-                        </strong>
-
-
-                        <div class="progress-bar">
-
-                            <div class="progress"></div>
-
-                        </div>
-
-
-                        <div class="progress-labels">
-
-                            <span>
-                                $0.00
-                            </span>
-
-                            <span>
-                                $75.00
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </aside>
-
-        </div>
-        <!-- END CART LAYOUT -->
 
     </div>
-    <!-- END CART CONTAINER -->
+
+</div>
+
 
 </section>
-<!-- END CART PAGE -->
 
 {% endblock %}

@@ -56,7 +56,8 @@ EXTENTED_APP=[
     'reviews',
     'virtual_tryon',
     'wishlist',
-    'ai_features'
+    'ai_features',
+    'shoes',
 ]
 
 INSTALLED_APPS+=EXTENTED_APP

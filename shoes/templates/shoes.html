@@ -1,0 +1,470 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+LUNOIR | Shoes
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/shoes.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- =========================================================
+     SHOES HERO
+========================================================= -->
+
+<section class="shoes-hero">
+
+    <div class="hero-content">
+
+        <span class="hero-small-title">
+            STEP INTO STYLE
+        </span>
+
+        <h1>
+            SHOES
+        </h1>
+
+        <p>
+            Comfort meets elegance. Find the perfect pair
+            for every step of your journey.
+        </p>
+
+        <a href="#women-shoes" class="hero-button">
+            SHOP NOW <span>→</span>
+        </a>
+
+    </div>
+
+
+    <div class="hero-models">
+
+        <!-- WOMAN MODEL -->
+        <div class="hero-woman">
+            <img src="{% static 'images/women.png' %}" alt="Women's Shoes" style="height: 80%; width: auto;">
+        </div>
+
+        <!-- MAN MODEL -->
+        <div class="hero-man">
+            <img src="{% static 'images/men.png' %}" alt="Men's Shoes" style="height: 80%; width: auto;">
+        </div>
+
+        <!-- Decorative shoes -->
+        <div class="hero-shoe hero-heels">
+            👠
+        </div>
+
+        <div class="hero-shoe hero-sneaker">
+            👟
+        </div>
+
+    </div>
+
+
+    <div class="hero-message">
+        <span>Good</span>
+        <span>Shoes</span>
+        <span>Better</span>
+        <span>Days</span>
+        <small>♡</small>
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MAIN SHOES AREA
+========================================================= -->
+
+<section class="shoes-store">
+
+    <!-- =====================================================
+         LEFT SIDEBAR
+    ====================================================== -->
+
+    <aside class="shoe-sidebar">
+
+        <div class="sidebar-title">
+            <span>SHOP BY GENDER</span>
+        </div>
+
+
+        <!-- GENDER -->
+
+        <div class="gender-list">
+
+            <a href="#" class="gender-item active">
+                <span class="category-icon">♙</span>
+                <span>Women</span>
+                <span class="arrow">›</span>
+            </a>
+
+            <a href="#" class="gender-item">
+                <span class="category-icon">♙</span>
+                <span>Men</span>
+                <span class="arrow">›</span>
+            </a>
+
+        </div>
+
+
+        <!-- WOMEN -->
+
+        <div class="sidebar-section">
+
+            <h3>
+                WOMEN'S SHOES
+            </h3>
+
+            <a href="#women-heels">
+                <span>♢</span>
+                Heels
+                <b>›</b>
+            </a>
+
+            <a href="#women-sneakers">
+                <span>♧</span>
+                Sneakers
+                <b>›</b>
+            </a>
+
+            <a href="#women-sandals">
+                <span>♧</span>
+                Sandals
+                <b>›</b>
+            </a>
+
+            <a href="#women-flats">
+                <span>⌁</span>
+                Flats
+                <b>›</b>
+            </a>
+
+            <a href="#women-boots">
+                <span>♧</span>
+                Boots
+                <b>›</b>
+            </a>
+
+        </div>
+
+
+        <!-- MEN -->
+
+        <div class="sidebar-section">
+
+            <h3>
+                MEN'S SHOES
+            </h3>
+
+            <a href="#men-sneakers">
+                <span>♧</span>
+                Sneakers
+                <b>›</b>
+            </a>
+
+            <a href="#men-formal">
+                <span>♢</span>
+                Formal Shoes
+                <b>›</b>
+            </a>
+
+            <a href="#men-loafers">
+                <span>♧</span>
+                Loafers
+                <b>›</b>
+            </a>
+
+            <a href="#men-boots">
+                <span>♧</span>
+                Boots
+                <b>›</b>
+            </a>
+
+        </div>
+
+
+        <!-- SIDEBAR MESSAGE -->
+
+        <div class="sidebar-message">
+
+            <div class="leaf-icon">
+                ❧
+            </div>
+
+            <h4>
+                Style for Every Step
+            </h4>
+
+            <p>
+                From casual days to special nights.
+            </p>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         PRODUCTS AREA
+    ====================================================== -->
+
+    <main class="shoe-products">
+
+        <!-- =========================================
+         PRODUCTS TOOLBAR
+    ========================================== -->
+
+        <div class="products-toolbar">
+
+            <div class="sort-box">
+
+                <label for="sort">
+                    Sort by:
+                </label>
+
+                <select id="sort" onchange="sortShoes(this.value)">
+
+                    <option value="popular">
+                        Popular
+                    </option>
+
+                    <option value="newest">
+                        Newest
+                    </option>
+
+                    <option value="price_low">
+                        Price: Low to High
+                    </option>
+
+                    <option value="price_high">
+                        Price: High to Low
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="products-count">
+
+                Showing
+                <strong>{{ shoes_count }}</strong>
+                shoes
+
+            </div>
+
+
+            <div class="view-buttons">
+
+                <button type="button" class="view-btn active" onclick="setGridView()">
+                    ▦
+                </button>
+
+                <button type="button" class="view-btn" onclick="setListView()">
+                    ☷
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+         WOMEN'S SHOES
+    ========================================== -->
+
+        <section class="shoe-section" id="women-shoes">
+
+            <div class="section-heading">
+
+                <h2>
+                    WOMEN'S SHOES
+                </h2>
+
+                <a href="#">
+                    View All →
+                </a>
+
+            </div>
+
+
+            <div class="shoe-grid">
+
+                {% for shoe in women_shoes %}
+
+                <article class="shoe-card" data-price="{{ shoe.price }}">
+
+                    <!-- IMAGE -->
+                    <div class="shoe-image">
+
+                        <!-- WISHLIST -->
+                        <button type="button" class="wishlist" title="Add to wishlist">
+                            ♡
+                        </button>
+                        
+                        <!-- VIEW SHOE -->
+                        <a href="{% url 'shoes:shoes_detail' shoe.id %}" class="shoe-plus" title="View Shoe">
+                            +
+                        </a>
+
+
+
+
+
+                        {% if shoe.image %}
+
+                        <img src="{{ shoe.image.url }}" alt="{{ shoe.name }}">
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- INFORMATION -->
+                    <div class="shoe-info">
+
+                        <h3>
+                            {{ shoe.name }}
+                        </h3>
+
+                        <p class="shoe-category">
+                            {{ shoe.get_category_display }}
+                        </p>
+
+                        <div class="shoe-price">
+                            ${{ shoe.price }}
+                        </div>
+
+                        <div class="rating">
+                            ★★★★★
+                        </div>
+
+                        <p class="stock-status">
+                            In Stock
+                        </p>
+
+                    </div>
+
+                </article>
+
+                {% empty %}
+
+                <p class="no-shoes">
+                    No women's shoes available.
+                </p>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+     MEN'S SHOES
+========================================= -->
+
+        <section class="shoe-section" id="men-shoes">
+
+
+
+            <div class="section-heading">
+
+                <h2>
+                    MEN'S SHOES
+                </h2>
+
+                <a href="#">
+                    View All →
+                </a>
+
+            </div>
+
+
+            <div class="shoe-grid">
+
+                {% for shoe in men_shoes %}
+
+                <article class="shoe-card" data-price="{{ shoe.price }}">
+
+                    <!-- IMAGE -->
+                    <div class="shoe-image">
+
+                        <!-- WISHLIST -->
+                        <button type="button" class="wishlist" title="Add to wishlist">
+                            ♡
+                        </button>
+
+                        <!-- VIEW SHOE -->
+                        <a href="{% url 'shoes:shoes_detail' shoe.id %}" class="shoe-plus" title="View Shoe">
+                            +
+                        </a>
+
+
+
+
+
+                        {% if shoe.image %}
+
+                        <img src="{{ shoe.image.url }}" alt="{{ shoe.name }}">
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- INFORMATION -->
+                    <div class="shoe-info">
+
+                        <h3>
+                            {{ shoe.name }}
+                        </h3>
+
+
+                        <p class="shoe-category">
+                            {{ shoe.get_category_display }}
+                        </p>
+
+
+                        <div class="shoe-price">
+                            ${{ shoe.price }}
+                        </div>
+
+
+                        <div class="rating">
+                            ★★★★★
+                        </div>
+
+
+                        <p class="stock-status">
+                            In Stock
+                        </p>
+
+
+                       
+
+                    </div>
+
+                </article>
+
+
+                {% empty %}
+
+                <p class="no-shoes">
+                    No men's shoes available.
+                </p>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+    {% endblock %}
